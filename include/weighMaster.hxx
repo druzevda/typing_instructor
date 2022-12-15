@@ -1,6 +1,8 @@
 #ifndef WEIGH_MASTER_INCLUDED_HXX
 #define WEIGH_MASTER_INCLUDED_HXX
 #include <cstring>
+#include <vector>
+#include <cstdint>
 class weighMaster{
 
   std::vector<double> weights{};
