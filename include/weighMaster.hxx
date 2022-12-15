@@ -17,7 +17,7 @@ class weighMaster{
 
   void normalize();
 
-  std::vector<double> getWeights(){
+  const std::vector<double>& getWeights()const{
     return weights;
   }
 
