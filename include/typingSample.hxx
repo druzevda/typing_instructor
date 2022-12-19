@@ -42,7 +42,7 @@ weighMaster typingSample(const std::string& text){
     attroff(A_BLINK);
 
     for(int i = allSum; i < text.size();++i){
-      printw("%c",text[i]);
+      printw("%c",text[i]==' ' ? '_' : text[i]);
     }
     attroff(A_REVERSE);
 
