@@ -15,9 +15,19 @@ enum class trainingMode{
 };
 
 std::vector<std::string> texts{
-  "my_day.txt",
+  "a_great_summer_vacation.txt",
+    "at_school.txt",
+    "day_of_the_week.txt",
+    "my_day.txt",
+    "my_family_at_home.txt",
     "my_name_is_john.txt",
-    "my_wonderful_family.txt"
+    "my_wonderful_family.txt",
+    "numbers.txt",
+    "our_vacation.txt",
+    "preparing_food.txt",
+    "the_city_where_i_live.txt",
+    "the_house.txt",
+    "the_pet_store.txt"
 };
 enum class KEYS{
   CTRL_X = 24,
