@@ -10,11 +10,11 @@ int main(){
   weighMaster personMaster(lettersAmount);
 
   initscr();
-  getmaxyx(stdscr,Y_SIZE_WINDOW,X_SIZE_WINDOW);
+  initsizes();
 
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
   while(true){
-    int betterText = findBetterText(personMaster.getWeights());
+    const int betterText = findBetterText(personMaster.getWeights());
     printw("your better text = %s", texts[betterText].c_str());
     const std::string newText = scanTextToString(betterText);
     personMaster = typingSample(newText);
