@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <curses.h>
 
 constexpr uint32_t lettersAmount = 43;
 constexpr char letters[43]={" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
@@ -14,7 +15,8 @@ enum class trainingMode{
   CHECK_WEAK_POINTS,
 };
 
-std::vector<std::string> texts{
+
+const std::vector<std::string> texts{
   "a_great_summer_vacation.txt",
     "at_school.txt",
     "day_of_the_week.txt",
@@ -37,9 +39,25 @@ enum class KEYS{
   CTRL_K = 11,
 };
 
-int X_SIZE_WINDOW=0;
-int Y_SIZE_WINDOW=0;
+constexpr double X_SIZE_SUBWINDOW_MULT  = 2.0 / 5.0;
+constexpr double Y_SIZE_SUBWINDOW_MULT  = 2.0 / 5.0;
+constexpr double X_POINT_SUBWINDOW_MULT = 1.0 / 5.0;
+constexpr double Y_POINT_SUBWINDOW_MULT = 1.0 / 5.0;
 
-std::string textsFolder{"./texts/"};
+int X_POINT_SUBWINDOW =0;
+int Y_POINT_SUBWINDOW =0;
+int X_SIZE_SUBWINDOW  =0;
+int Y_SIZE_SUBWINDOW  =0;
+
+const std::string textsFolder{"./texts/"};
+
+void initsizes(){
+
+  X_POINT_SUBWINDOW = X_POINT_SUBWINDOW_MULT * COLS ;
+  Y_POINT_SUBWINDOW = Y_POINT_SUBWINDOW_MULT * LINES;
+  X_SIZE_SUBWINDOW  = X_SIZE_SUBWINDOW_MULT  * COLS ;
+  Y_SIZE_SUBWINDOW  = Y_SIZE_SUBWINDOW_MULT  * LINES;
+
+}
 
 #endif // CONFIG_HXX_INCLUDED_______

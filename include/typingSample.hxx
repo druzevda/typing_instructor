@@ -5,46 +5,53 @@
 #include <ncurses.h>
 weighMaster typingSample(const std::string& text){
   weighMaster result(lettersAmount);
-
+  WINDOW* subwindow = newwin(Y_SIZE_SUBWINDOW,X_SIZE_SUBWINDOW,Y_POINT_SUBWINDOW,X_POINT_SUBWINDOW);
+  if(subwindow == nullptr){
+    std::cerr << "error, dos not open subwindow"<< std::endl;
+    delwin(subwindow);
+    endwin();
+    exit(100);
+  }
 
   int goodSym = 0;
   int allSum = 0;
-
+  wrefresh(stdscr);
   if(has_colors()==FALSE){
-
+    std::cerr << "error, dos not init colors "<< std::endl;
+    delwin(subwindow);
+    endwin();
+    exit(100);
   }else{
     start_color();
     init_pair(1,COLOR_BLACK,COLOR_RED);
     init_pair(2,COLOR_MAGENTA,COLOR_BLACK);
   }
-
   while( goodSym < text.size() ){
-    clear();
+    wclear(subwindow);
 
-    attron(A_BOLD | COLOR_PAIR(2));
-
-    move(Y_SIZE_WINDOW/4,X_SIZE_WINDOW/4);
+    wattron(subwindow,A_BOLD | COLOR_PAIR(2));
 
     for(int i = 0; i < goodSym;++i){
-      printw("%c",text[i]);
+      wprintw(subwindow,"%c",text[i]);
     }
-    attroff(A_BOLD | COLOR_PAIR(2));
+    wattroff(subwindow,A_BOLD | COLOR_PAIR(2));
 
-    attron(A_REVERSE);
-    attron(A_BLINK);
+    wattron(subwindow,A_REVERSE);
+    wattron(subwindow,A_BLINK);
 
-    attrset(COLOR_PAIR(1));
+    wattrset(subwindow,COLOR_PAIR(1));
     for(int i = goodSym; i < allSum;++i){
-      printw("*");
+      wprintw(subwindow,"*");
     }
-    attroff(COLOR_PAIR(1));
+    wattroff(subwindow,COLOR_PAIR(1));
 
-    attroff(A_BLINK);
+    wattroff(subwindow,A_BLINK);
 
     for(int i = allSum; i < text.size();++i){
-      printw("%c",text[i]==' ' ? '_' : text[i]);
+      wprintw(subwindow,"%c",text[i]==' ' ? '_' : text[i]);
     }
-    attroff(A_REVERSE);
+    wattroff(subwindow,A_REVERSE);
+    wrefresh(subwindow);
 
     char c = getch();
     if(allSum > 0 && c == 127){ // delit
@@ -66,9 +73,10 @@ weighMaster typingSample(const std::string& text){
     }else{
       ++allSum;
     }
-    refresh();
+    wrefresh(subwindow);
   }
   result.normalize();
+  delwin(subwindow);
   return result;
 }
 #endif // TYPING_SAMPLE_HXX_INCLUDED___
