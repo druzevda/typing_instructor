@@ -19,7 +19,7 @@ PRINT_CLEAR     =@echo "\e[1;29m CLEAR \e[0m"
 PRINT_PREPARE   =@echo "\e[1;29m PREPARE TO COMPILE \e[0m"
 PRINT_UNZIPTEXTS=@echo "\e[1;29m UNZIP TEXTS \e[0m"
 PRINT_BUILD     =@echo "\e[1;31m BUILDING \e[0m \e[1;36m $@ \e[0m"
-PRINT_LINKED    =@echo "\e[1;32m LINKED\e[0m \e[1;36m    $@ \e[0m"
+PRINT_LINK      =@echo "\e[1;32m LINK\e[0m \e[1;36m    $@ \e[0m"
 PRINT_EXE       =@echo "\e[1;33m EXECUTION\e[0m \e[1;36m $< \e[0m"
 PRINT_SUCSESS   =@echo "\e[1;33m SUCSESSFULLY FINISH \e[0m"
 
@@ -28,15 +28,14 @@ all:run
 
 ##########################################################################################3
 
-run: $(EXE)
+run: $(EXE) ./texts
 	$(PRINT_EXE)
-	@$(EXE)
+	$(EXE)
 	$(PRINT_SUCSESS)
 
 ##########################################################################################3
 
 $(EXE):\
-          clear\
           $(INCLUDE)\
           $(SRC)/$(MAIN)\
           OBJ_COMPILE
@@ -45,7 +44,7 @@ $(EXE):\
 
 ##########################################################################################3
 
-OBJ_COMPILE: prepareToCompile\
+OBJ_COMPILE: $(OBJ)\
 						$(OBJ)/main.o\
 						$(OBJ)/weighMaster.o
 
@@ -62,12 +61,14 @@ $(OBJ)/main.o:\
 	$(PRINT_BUILD)
 	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
 
-##########################################################################################3
-prepareToCompile:
-	$(PRINT_MAKEDIRS)
-	@mkdir -p $(OBJ)
+##########################################################################################
+./texts:
 	$(PRINT_UNZIPTEXTS)
 	@unzip texts.zip >/dev/null 2>/dev/null
+
+$(OBJ):
+	$(PRINT_MAKEDIRS)
+	@mkdir -p $(OBJ)
 
 
 clear:
