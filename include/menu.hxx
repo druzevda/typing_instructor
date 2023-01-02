@@ -3,12 +3,13 @@
 #include "config.hxx"
 #include <menu.h>
 #include "modes.hxx"
+
+void learningByErrorsTextes_mode();
+
 void menu(){
   int c;
   MENU *my_menu;
-  ITEM *cur_item;
   int curItem = 0;
-
 
   const uint32_t n_choices = menu_choices.size();
   ITEM **my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
@@ -17,6 +18,8 @@ void menu(){
   for(uint32_t i = 0; i < n_choices; ++i)
     my_items[i] = new_item(menu_choices[i].c_str(), empty.c_str());
   my_items[n_choices] = (ITEM *)NULL;
+
+  set_item_userptr(my_items[0],(void*)learningByErrorsTextes_mode);
 
   my_menu = new_menu((ITEM **)my_items);
   post_menu(my_menu);
@@ -33,16 +36,9 @@ void menu(){
         ++curItem;
       break;
       case 10:
-        const int res = std::abs(curItem % n_choices);
-        switch(res){
-          case 0:
-            learningByErrorsTextes_mode();
-            exit(1);
-          break;
-          case 1:
-            exit(1);
-          break;
-        }
+        ITEM * cur_item = current_item(my_menu);
+        void (*mode)() = (void(*)())item_userptr(cur_item);
+        mode();
       break;
     }
   }
