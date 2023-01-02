@@ -3,6 +3,7 @@
 
 #include "weighMaster.hxx"
 #include <ncurses.h>
+
 weighMaster typingSample(const std::string& text){
   weighMaster result(lettersAmount);
   WINDOW* subwindow = newwin(Y_SIZE_SUBWINDOW,X_SIZE_SUBWINDOW,Y_POINT_SUBWINDOW,X_POINT_SUBWINDOW);
@@ -12,10 +13,12 @@ weighMaster typingSample(const std::string& text){
     endwin();
     exit(100);
   }
-
   int goodSym = 0;
   int allSum = 0;
+
+  //wclear(stdscr);
   wrefresh(stdscr);
+
   if(has_colors()==FALSE){
     std::cerr << "error, dos not init colors "<< std::endl;
     delwin(subwindow);

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include "weighMaster.hxx"
-int findBetterText(const std::vector<double>& userWeighs){
+int findBetterText(const std::vector<double>& userWeighs, const std::vector<std::string>& texts){
   char buff[3000];
   weighMaster weights(lettersAmount);
   int bestText = -1;
