@@ -52,12 +52,14 @@ int Y_SIZE_SUBWINDOW  =0;
 const std::string textsFolder{"./texts/"};
 
 void initsizes(){
-
   X_POINT_SUBWINDOW = X_POINT_SUBWINDOW_MULT * COLS ;
   Y_POINT_SUBWINDOW = Y_POINT_SUBWINDOW_MULT * LINES;
   X_SIZE_SUBWINDOW  = X_SIZE_SUBWINDOW_MULT  * COLS ;
   Y_SIZE_SUBWINDOW  = Y_SIZE_SUBWINDOW_MULT  * LINES;
-
 }
 
+const std::vector<std::string> menu_choices{
+  "random texts",
+  "simple words",
+};
 #endif // CONFIG_HXX_INCLUDED_______

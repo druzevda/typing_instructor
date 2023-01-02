@@ -13,7 +13,7 @@ OBJ_FILES=\
           $(OBJ)/main.o\
           $(OBJ)/weighMaster.o
 
-CFLAGS= -lncurses -march=x86-64 -D NDEBUG -std=c++2a -fomit-frame-pointer -fexpensive-optimizations -O3 -pedantic-errors -pedantic  -fdiagnostics-show-option  -fdiagnostics-show-option -Wno-div-by-zero  -funroll-loops -fvariable-expansion-in-unroller -fprefetch-loop-arrays -freorder-blocks-and-partition -fno-cprop-registers -funswitch-loops -funsafe-loop-optimizations
+CFLAGS= -lmenu -lncurses -march=x86-64 -D NDEBUG -std=c++2a -fomit-frame-pointer -fexpensive-optimizations -O3 -pedantic-errors -pedantic  -fdiagnostics-show-option  -fdiagnostics-show-option -Wno-div-by-zero  -funroll-loops -fvariable-expansion-in-unroller -fprefetch-loop-arrays -freorder-blocks-and-partition -fno-cprop-registers -funswitch-loops -funsafe-loop-optimizations
 
 PRINT_CLEAR     =@echo "\e[1;29m CLEAR \e[0m"
 PRINT_PREPARE   =@echo "\e[1;29m PREPARE TO COMPILE \e[0m"
@@ -36,6 +36,7 @@ run: $(EXE) ./texts
 ##########################################################################################3
 
 $(EXE):\
+					clear\
           $(INCLUDE)\
           $(SRC)/$(MAIN)\
           OBJ_COMPILE

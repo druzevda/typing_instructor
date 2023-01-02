@@ -3,6 +3,7 @@
 #include <iostream>
 #include "typingSample.hxx"
 #include "scanTextToString.hxx"
+#include "menu.hxx"
 int main(){
   for(int i = 0; i < lettersAmount; ++i){
     lettersMap.insert({letters[i],i});
@@ -10,8 +11,15 @@ int main(){
   weighMaster personMaster(lettersAmount);
 
   initscr();
-  initsizes();
 
+  noecho();
+  cbreak();
+  keypad(stdscr, TRUE);
+
+  initsizes();
+  menu();
+
+  /*
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
   while(true){
     const int betterText = findBetterText(personMaster.getWeights());
@@ -19,6 +27,7 @@ int main(){
     const std::string newText = scanTextToString(betterText);
     personMaster = typingSample(newText);
   }
+  */
 
   endwin();
   return 0;
