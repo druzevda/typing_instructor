@@ -16,6 +16,19 @@ enum class trainingMode{
 };
 
 
+const std::vector<std::string> words{
+  "simpleWords_0.txt",
+    "simpleWords_1.txt",
+    "simpleWords_2.txt",
+    "simpleWords_3.txt",
+    "simpleWords_4.txt",
+    "simpleWords_5.txt",
+    "simpleWords_6.txt",
+    "simpleWords_7.txt",
+    "simpleWords_8.txt",
+    "simpleWords_9.txt"
+};
+
 const std::vector<std::string> texts{
   "a_great_summer_vacation.txt",
     "at_school.txt",

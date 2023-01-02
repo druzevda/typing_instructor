@@ -16,7 +16,7 @@ weighMaster typingSample(const std::string& text){
   int goodSym = 0;
   int allSum = 0;
 
-  wclear(stdscr);
+  //wclear(stdscr);
   wrefresh(stdscr);
 
   if(has_colors()==FALSE){

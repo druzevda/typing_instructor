@@ -5,6 +5,7 @@
 #include "modes.hxx"
 
 void learningByErrorsTextes_mode();
+void learningByErrorsWords_mode();
 
 void menu(){
   int c;
@@ -20,6 +21,7 @@ void menu(){
   my_items[n_choices] = (ITEM *)NULL;
 
   set_item_userptr(my_items[0],(void*)learningByErrorsTextes_mode);
+  set_item_userptr(my_items[1],(void*)learningByErrorsWords_mode);
 
   my_menu = new_menu((ITEM **)my_items);
   post_menu(my_menu);

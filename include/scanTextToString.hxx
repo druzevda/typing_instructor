@@ -2,10 +2,8 @@
 #define SCAN_TEXT_TO_STRING____HXX___INCLUDED
 #include <string>
 #include <fstream>
-std::string scanTextToString(const int textCount){
+std::string scanTextToString(const std::string& currentTextName){
   std::string result;
-
-  const std::string& currentTextName = texts[textCount];
   char buff[3000];
 
   std::ifstream file(textsFolder + currentTextName);
