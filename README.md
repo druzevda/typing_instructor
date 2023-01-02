@@ -1,7 +1,5 @@
 # TODO LIST:
-* menu
-* regimes
-** clasic texts
-** simple words
+* make better menu
+* add more modes
 * statwindow
 * ^x ^p ^n keys binding
