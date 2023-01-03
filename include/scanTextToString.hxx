@@ -13,4 +13,15 @@ std::string scanTextToString(const std::string& currentTextName){
   }
   return result;
 }
+std::vector<std::string> scanWordsToString(const std::string& currentTextName){
+  std::string buff;
+  std::ifstream file(textsFolder + currentTextName);
+  std::vector<std::string> result;
+  if(!file.bad()){
+    while(file >> buff){
+      result.push_back(buff);
+    }
+  }
+  return result;
+}
 #endif //  SCAN_TEXT_TO_STRING____HXX___INCLUDED

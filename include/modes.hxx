@@ -14,10 +14,9 @@ void learningByErrorsTextes_mode(){
 void learningByErrorsWords_mode(){
   weighMaster personMaster(lettersAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
+  std::vector<std::string> buff = scanWordsToString(wordsFile);
   while(true){
-    const int betterText = findBetterText(personMaster.getWeights(),words);
-    printw("your better text = %s", words[betterText].c_str());
-    const std::string newText = scanTextToString(words[betterText]);
+    const std::string newText = constructBetterWords(personMaster.getWeights(), buff);
     personMaster = typingSample(newText);
   }
 }

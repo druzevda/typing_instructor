@@ -15,20 +15,6 @@ enum class trainingMode{
   CHECK_WEAK_POINTS,
 };
 
-
-const std::vector<std::string> words{
-  "simpleWords_0.txt",
-    "simpleWords_1.txt",
-    "simpleWords_2.txt",
-    "simpleWords_3.txt",
-    "simpleWords_4.txt",
-    "simpleWords_5.txt",
-    "simpleWords_6.txt",
-    "simpleWords_7.txt",
-    "simpleWords_8.txt",
-    "simpleWords_9.txt"
-};
-
 const std::vector<std::string> texts{
   "a_great_summer_vacation.txt",
     "at_school.txt",
@@ -63,6 +49,7 @@ int X_SIZE_SUBWINDOW  =0;
 int Y_SIZE_SUBWINDOW  =0;
 
 const std::string textsFolder{"./texts/"};
+const std::string wordsFile{"words.txt"};
 
 void initsizes(){
   X_POINT_SUBWINDOW = X_POINT_SUBWINDOW_MULT * COLS ;
@@ -75,4 +62,6 @@ const std::vector<std::string> menu_choices{
   "random texts",
   "simple words",
 };
+
+constexpr uint32_t maxTextFromWordsSize = 100;
 #endif // CONFIG_HXX_INCLUDED_______
