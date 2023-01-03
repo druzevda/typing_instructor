@@ -51,7 +51,7 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
 }
 std::string constructBetterWords(const std::vector<double>& userWeighs, const std::vector<std::string>& words){
   weighMaster weights(lettersAmount);
-  std::map<double,int> wordsMap;
+  std::multimap<double,int,std::greater<double>> wordsMap;
   for(uint32_t wordsCount = 0; wordsCount < words.size(); ++wordsCount){ const std::string& curWord = words[wordsCount];
     const uint32_t curWordSize = curWord.size();
     char prevSymbol = ' ';
