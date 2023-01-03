@@ -38,8 +38,8 @@ enum class KEYS{
   CTRL_K = 11,
 };
 
-constexpr double X_SIZE_SUBWINDOW_MULT  = 2.0 / 5.0;
-constexpr double Y_SIZE_SUBWINDOW_MULT  = 2.0 / 5.0;
+constexpr double X_SIZE_SUBWINDOW_MULT  = 3.0 / 5.0;
+constexpr double Y_SIZE_SUBWINDOW_MULT  = 3.0 / 5.0;
 constexpr double X_POINT_SUBWINDOW_MULT = 1.0 / 5.0;
 constexpr double Y_POINT_SUBWINDOW_MULT = 1.0 / 5.0;
 
