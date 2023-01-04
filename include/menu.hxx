@@ -24,7 +24,8 @@ void menu(){
 
   set_item_userptr(my_items[0],(void*)learningByErrorsTextes_mode);
   set_item_userptr(my_items[1],(void*)learningByErrorsWords_mode);
-  //set_item_userptr(my_items[1],(void*)learningByErrorsWords_mode);
+  set_item_userptr(my_items[2],(void*)learningByErrorsOneWord_mode);
+  set_item_userptr(my_items[3],(void*)randomWord_mode);
 
   my_menu = new_menu((ITEM **)my_items);
   post_menu(my_menu);
