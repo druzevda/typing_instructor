@@ -3,19 +3,25 @@
 
 #include "weighMaster.hxx"
 #include <ncurses.h>
+
 weighMaster typingSample(const std::string& text){
   weighMaster result(lettersAmount);
-  WINDOW* subwindow = newwin(Y_SIZE_SUBWINDOW,X_SIZE_SUBWINDOW,Y_POINT_SUBWINDOW,X_POINT_SUBWINDOW);
+  WINDOW* subwindow = newwin(
+      Y_SIZE_SUBWINDOW,
+      X_SIZE_SUBWINDOW,
+      Y_POINT_SUBWINDOW,
+      X_POINT_SUBWINDOW
+  );
   if(subwindow == nullptr){
     std::cerr << "error, dos not open subwindow"<< std::endl;
     delwin(subwindow);
     endwin();
     exit(100);
   }
-
   int goodSym = 0;
   int allSum = 0;
-  wrefresh(stdscr);
+
+
   if(has_colors()==FALSE){
     std::cerr << "error, dos not init colors "<< std::endl;
     delwin(subwindow);
@@ -26,6 +32,17 @@ weighMaster typingSample(const std::string& text){
     init_pair(1,COLOR_BLACK,COLOR_RED);
     init_pair(2,COLOR_MAGENTA,COLOR_BLACK);
   }
+
+  move(Y_POINT_SUBWINDOW-1,X_POINT_SUBWINDOW-1);
+  hline(0,X_SIZE_SUBWINDOW+1);
+  vline(0,Y_SIZE_SUBWINDOW+2);
+  move(Y_POINT_SUBWINDOW+Y_SIZE_SUBWINDOW,X_POINT_SUBWINDOW);
+  hline(0,X_SIZE_SUBWINDOW);
+  move(Y_POINT_SUBWINDOW-1,X_POINT_SUBWINDOW+X_SIZE_SUBWINDOW);
+  vline(0,Y_SIZE_SUBWINDOW+2);
+
+  wrefresh(stdscr);
+
   while( goodSym < text.size() ){
     wclear(subwindow);
 
