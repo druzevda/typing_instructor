@@ -51,7 +51,18 @@ int Y_SIZE_SUBWINDOW  =0;
 const std::string textsFolder{"./texts/"};
 const std::string wordsFile{"words.txt"};
 
-void initsizes(){
+void initAll(){
+
+  for(int i = 0; i < lettersAmount; ++i){
+    lettersMap.insert({letters[i],i});
+  }
+
+  initscr();
+
+  noecho();
+  cbreak();
+  curs_set(0);
+
   X_POINT_SUBWINDOW = X_POINT_SUBWINDOW_MULT * COLS ;
   Y_POINT_SUBWINDOW = Y_POINT_SUBWINDOW_MULT * LINES;
   X_SIZE_SUBWINDOW  = X_SIZE_SUBWINDOW_MULT  * COLS ;
