@@ -7,7 +7,7 @@
 #include <curses.h>
 
 constexpr uint32_t lettersAmount = 43;
-constexpr char letters[43]={" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
+constexpr char letters[lettersAmount]={" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
 std::unordered_map<char,double> lettersMap{ };
 
 enum class trainingMode{
@@ -59,9 +59,17 @@ void initsizes(){
 }
 
 const std::vector<std::string> menu_choices{
-  "random texts",
-  "simple words",
+  "0 TEXTS",
+  "1 WORDS",
+  "2 WORD",
 };
 
 constexpr uint32_t maxTextFromWordsSize = 100;
+
+const std::vector<std::string> menu_descriptions{
+  "(autochoice texts, focus on your weak points)",
+  "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ letters)",
+  "(one word, n times, random choice,"+ std::to_string(maxTextFromWordsSize) +  "+ letters )"
+};
+
 #endif // CONFIG_HXX_INCLUDED_______

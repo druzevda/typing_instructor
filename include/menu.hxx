@@ -1,6 +1,7 @@
 #ifndef MENU_HXX_INCLUDED_____
 #define MENU_HXX_INCLUDED_____
 #include "config.hxx"
+#include <cassert>
 #include <menu.h>
 #include "modes.hxx"
 
@@ -12,16 +13,18 @@ void menu(){
   MENU *my_menu;
   int curItem = 0;
 
+  assert(menu_choices.size()==menu_descriptions.size());
+
   const uint32_t n_choices = menu_choices.size();
   ITEM **my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
-  const std::string empty{""};
 
   for(uint32_t i = 0; i < n_choices; ++i)
-    my_items[i] = new_item(menu_choices[i].c_str(), empty.c_str());
+    my_items[i] = new_item(menu_choices[i].c_str(), menu_descriptions[i].c_str());
   my_items[n_choices] = (ITEM *)NULL;
 
   set_item_userptr(my_items[0],(void*)learningByErrorsTextes_mode);
   set_item_userptr(my_items[1],(void*)learningByErrorsWords_mode);
+  //set_item_userptr(my_items[1],(void*)learningByErrorsWords_mode);
 
   my_menu = new_menu((ITEM **)my_items);
   post_menu(my_menu);
