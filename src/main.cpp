@@ -5,15 +5,8 @@
 #include "scanTextToString.hxx"
 #include "menu.hxx"
 int main(){
-  for(int i = 0; i < lettersAmount; ++i){
-    lettersMap.insert({letters[i],i});
-  }
 
-  initscr();
-
-  noecho();
-  cbreak();
-  initsizes();
+  initAll();
 
   menu();
 

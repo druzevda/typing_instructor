@@ -23,6 +23,10 @@ class weighMaster{
 
   void clear();
 
+  uint32_t getSamplesAmount()const{
+    return samplesAmount;
+  }
+
   int getWidth()const{
     return width;
   }
