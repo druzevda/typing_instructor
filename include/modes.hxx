@@ -25,7 +25,7 @@ void learningByErrorsWords_mode(){
 void randomWord_mode(){
   std::vector<std::string> buff = scanWordsToString(wordsFile);
   std::mt19937 mersene(std::random_device{}());
-  assert(buff.size > 0);
+  assert(buff.size() > 0);
   std::uniform_int_distribution<> unif(0,buff.size());
   while(true){
     const int wordNum = unif(mersene);
