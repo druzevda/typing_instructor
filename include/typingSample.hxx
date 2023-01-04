@@ -79,13 +79,13 @@ weighMaster typingSample(const std::string& text){
     wprintw(curWin,header.c_str());
 
     wmove(curWin,1,0);
-    wprintw(curWin,"Errors = %d, %.2lf%%",errorsAmount,errorsProc);
+    wprintw(curWin,"Errors = %d, %.1lf%%",errorsAmount,errorsProc);
 
     wmove(curWin,2,0);
-    wprintw(curWin,"symbPerSec = %.2lf",symbPerSec);
+    wprintw(curWin,"symbPerSec = %.1lf",symbPerSec);
 
     wmove(curWin,3,0);
-    wprintw(curWin,"symbPerMin = %.2lf",symbPerMin);
+    wprintw(curWin,"symbPerMin = %.1lf",symbPerMin);
 
     wrefresh(curWin);
   };
