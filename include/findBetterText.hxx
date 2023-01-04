@@ -87,4 +87,45 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
   return result;
 }
 
+std::string constructTextFromWord(const std::string& word){
+  std::string result{};
+  while(result.size() < maxTextFromWordsSize){
+    result += word;
+    if(result.size()>= maxTextFromWordsSize){
+      break;
+    }else{
+      result+= " ";
+    }
+  }
+  return result;
+}
+
+std::string findBetterWord(const std::vector<double>& userWeighs, const std::vector<std::string>& words){
+  weighMaster weights(lettersAmount);
+  std::multimap<double,int,std::greater<double>> wordsMap;
+  for(uint32_t wordsCount = 0; wordsCount < words.size(); ++wordsCount){ const std::string& curWord = words[wordsCount];
+    const uint32_t curWordSize = curWord.size();
+    char prevSymbol = ' ';
+    char prevIndex = 0;
+    for(int symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
+      const char& curSymbol = curWord[symbolCount];
+      const int curIndex = lettersMap[curSymbol];
+
+      weights.makeSample(prevIndex,curIndex);
+
+      prevSymbol = curSymbol;
+      prevIndex = curIndex;
+    }
+    weights.normalize();
+    double weightForThisText = 0.0;
+    const std::vector<double>& weightsForThisText = weights.getWeights();
+    for(int i = 0; i < userWeighs.size(); ++i){
+      weightForThisText+=userWeighs[i]*weightsForThisText[i];
+    }
+    weights.clear();
+    wordsMap.insert({weightForThisText,wordsCount});
+  }
+  const auto bestWord = (*wordsMap.begin()).second;
+  return words[bestWord];
+}
 #endif  // FIND_BETTER_TEXT_HXX_INCLUDED
