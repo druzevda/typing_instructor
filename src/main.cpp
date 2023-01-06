@@ -5,15 +5,15 @@
 #include "scanTextToString.hxx"
 #include "menu.hxx"
 int main(){
-  for(int i = 0; i < lettersAmount; ++i){
-    lettersMap.insert({letters[i],i});
+
+  initAll();
+  if(COLS < 90 || LINES < 22){
+    clear();
+    printw("ERROR, WRONG SIZE OF TERMINAL, LESS THAN 90x22");
+    getch();
+    endwin();
+    exit(1);
   }
-
-  initscr();
-
-  noecho();
-  cbreak();
-  initsizes();
 
   menu();
 

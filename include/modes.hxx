@@ -1,5 +1,6 @@
 #ifndef MODES_HXX_INCLUDED_________________
 #define MODES_HXX_INCLUDED_________________
+#include <random>
 void learningByErrorsTextes_mode(){
   weighMaster personMaster(lettersAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
@@ -14,9 +15,41 @@ void learningByErrorsTextes_mode(){
 void learningByErrorsWords_mode(){
   weighMaster personMaster(lettersAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
-  std::vector<std::string> buff = scanWordsToString(wordsFile);
+  const std::vector<std::string> buff = scanWordsToString(wordsFile);
   while(true){
     const std::string newText = constructBetterWords(personMaster.getWeights(), buff);
+    personMaster = typingSample(newText);
+  }
+}
+
+void randomWord_mode(){
+  const std::vector<std::string> buff = scanWordsToString(wordsFile);
+  std::mt19937 mersene(std::random_device{}());
+  std::uniform_int_distribution<> unif(0,buff.size());
+  assert(buff.size() > 0);
+
+  while(true){
+    const int wordNum = unif(mersene);
+    const std::string& word = buff[wordNum];
+
+    const std::string newText = constructTextFromWord(word);
+    const auto personMaster = typingSample(newText);
+  }
+}
+
+void learningByErrorsOneWord_mode(){
+  weighMaster personMaster(lettersAmount);
+  personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
+
+  std::mt19937 mersene(std::random_device{}());
+  const std::vector<std::string> buff = scanWordsToString(wordsFile);
+  assert(buff.size() > 0);
+  std::uniform_int_distribution<> unif(0,buff.size());
+
+  while(true){
+    const std::string bestWord = findBetterWord(personMaster.getWeights(), buff);
+    const std::string& realyBest = bestWord.size()<4 ? buff[unif(mersene)] : bestWord;
+    const std::string newText = constructTextFromWord(realyBest);
     personMaster = typingSample(newText);
   }
 }

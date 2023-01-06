@@ -3,11 +3,13 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
 #include <unordered_map>
 #include <curses.h>
 
 constexpr uint32_t lettersAmount = 43;
-constexpr char letters[43]={" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
+constexpr char letters[lettersAmount]={" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
 std::unordered_map<char,double> lettersMap{ };
 
 enum class trainingMode{
@@ -51,17 +53,47 @@ int Y_SIZE_SUBWINDOW  =0;
 const std::string textsFolder{"./texts/"};
 const std::string wordsFile{"words.txt"};
 
-void initsizes(){
+FILE* logfile = nullptr;
+
+void initAll(){
+
+  for(int i = 0; i < lettersAmount; ++i){
+    lettersMap.insert({letters[i],i});
+  }
+
+  initscr();
+
+  noecho();
+  cbreak();
+  curs_set(0);
+
   X_POINT_SUBWINDOW = X_POINT_SUBWINDOW_MULT * COLS ;
   Y_POINT_SUBWINDOW = Y_POINT_SUBWINDOW_MULT * LINES;
   X_SIZE_SUBWINDOW  = X_SIZE_SUBWINDOW_MULT  * COLS ;
   Y_SIZE_SUBWINDOW  = Y_SIZE_SUBWINDOW_MULT  * LINES;
+
+  logfile = fopen("logfile","a");
+  if (logfile == nullptr){
+    std::cerr << "errror of opening file" << std::endl;
+    endwin();
+    exit(1);
+  }
 }
 
 const std::vector<std::string> menu_choices{
-  "random texts",
-  "simple words",
+  "0 TEXT",
+  "1 WORDS",
+  "2 WORD",
+  "3 WORD",
 };
 
 constexpr uint32_t maxTextFromWordsSize = 100;
+
+const std::vector<std::string> menu_descriptions{
+  "(autochoice texts, focus on your weak points)",
+  "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ letters)",
+  "(one word, n times, focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ letters )",
+  "(one word, n times, random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ letters )"
+};
+
 #endif // CONFIG_HXX_INCLUDED_______
