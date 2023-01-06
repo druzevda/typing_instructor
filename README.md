@@ -1,4 +1,4 @@
-## Before running the application,[install the ncurses library](https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/), depending on your Linux distribution
+## Before running the application, [install the ncurses library](https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/), depending on your Linux distribution
 
 ### TODO LIST:
 * make better menu
