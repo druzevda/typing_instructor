@@ -48,7 +48,7 @@ void learningByErrorsOneWord_mode(){
 
   while(true){
     const std::string bestWord = findBetterWord(personMaster.getWeights(), buff);
-    const std::string realyBest = bestWord.size()==1 ? buff[unif(mersene)] : bestWord;
+    const std::string& realyBest = bestWord.size()<4 ? buff[unif(mersene)] : bestWord;
     const std::string newText = constructTextFromWord(realyBest);
     personMaster = typingSample(newText);
   }
