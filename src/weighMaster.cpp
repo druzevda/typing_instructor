@@ -16,7 +16,15 @@ void weighMaster::makeSample(const char firstLetter, const char secondLetter){
 }
 
 void weighMaster::normalize(){
-  std::for_each(weights.begin(), weights.end(), [this](double& value){value/=this->width;});
+  const uint32_t normCoeff = (this->getSamplesAmount()==0?1:this->getSamplesAmount());
+  if(normCoeff == 1)
+    return;
+
+  std::for_each(weights.begin(), weights.end(),
+      [normCoeff](double& value){
+        value/=normCoeff;
+      }
+  );
 }
 void weighMaster::clear(){
   memset(weights.data(),0,weights.size());
