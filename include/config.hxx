@@ -3,6 +3,8 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
 #include <unordered_map>
 #include <curses.h>
 
@@ -51,6 +53,8 @@ int Y_SIZE_SUBWINDOW  =0;
 const std::string textsFolder{"./texts/"};
 const std::string wordsFile{"words.txt"};
 
+FILE* logfile = nullptr;
+
 void initAll(){
 
   for(int i = 0; i < lettersAmount; ++i){
@@ -67,6 +71,13 @@ void initAll(){
   Y_POINT_SUBWINDOW = Y_POINT_SUBWINDOW_MULT * LINES;
   X_SIZE_SUBWINDOW  = X_SIZE_SUBWINDOW_MULT  * COLS ;
   Y_SIZE_SUBWINDOW  = Y_SIZE_SUBWINDOW_MULT  * LINES;
+
+  logfile = fopen("logfile","a");
+  if (logfile == nullptr){
+    std::cerr << "errror of opening file" << std::endl;
+    endwin();
+    exit(1);
+  }
 }
 
 const std::vector<std::string> menu_choices{
