@@ -6,6 +6,7 @@
 #include <chrono>
 
 weighMaster typingSample(const std::string& text){
+  fprintf(logfile,"in typing sample\n");
   weighMaster result(lettersAmount);
   WINDOW* subwindow = newwin(
       Y_SIZE_SUBWINDOW,
@@ -14,7 +15,7 @@ weighMaster typingSample(const std::string& text){
       X_POINT_SUBWINDOW
   );
   if(subwindow == nullptr){
-    std::cerr << "error, dos not open subwindow"<< std::endl;
+    fprintf(logfile,"dosnt open subwindow exit()\n");
     delwin(subwindow);
     endwin();
     exit(100);
@@ -28,7 +29,8 @@ weighMaster typingSample(const std::string& text){
   );
 
   if(statwindow == nullptr){
-    std::cerr << "error, dos not open subwindow"<< std::endl;
+    fprintf(logfile,"dosnt open statwindow exit()\n");
+    delwin(subwindow);
     delwin(statwindow);
     delwin(subwindow);
     endwin();
@@ -39,7 +41,7 @@ weighMaster typingSample(const std::string& text){
   int allSum = 0;
 
   if(has_colors()==FALSE){
-    std::cerr << "error, dos not init colors "<< std::endl;
+    fprintf(logfile,"dosnt has_colors()  exit()\n");
     delwin(subwindow);
     endwin();
     exit(100);
@@ -64,6 +66,7 @@ weighMaster typingSample(const std::string& text){
   const int lettersInText = text.size();
 
   const auto begin = std::chrono::system_clock::now();
+
   auto printStat=[&begin](WINDOW* curWin,const std::string& header,const int errorsAmount,const int goodSymbols){
     wclear(curWin);
     const double errorsProc = goodSymbols==0 ? 0.0 : double(errorsAmount)/goodSymbols * 100.0;
@@ -92,11 +95,9 @@ weighMaster typingSample(const std::string& text){
 
   printStat(statwindow,"PleaseStartTyping",0,0);
 
-  while( goodSym < lettersInText){
+  const auto printText = [&subwindow,&text,&goodSym,&allSum,lettersInText](){
     wclear(subwindow);
-
     wattron(subwindow,A_BOLD | COLOR_PAIR(2));
-
     for(int i = 0; i < goodSym;++i){
       wprintw(subwindow,"%c",text[i]);
     }
@@ -112,14 +113,19 @@ weighMaster typingSample(const std::string& text){
     wattroff(subwindow,COLOR_PAIR(1));
 
     wattroff(subwindow,A_BLINK);
-
     for(int i = allSum; i < lettersInText;++i){
       wprintw(subwindow,"%c",text[i]==' ' ? '_' : text[i]);
     }
     wattroff(subwindow,A_REVERSE);
-    wrefresh(subwindow);
 
-    char c = getch();
+    wrefresh(subwindow);
+  };
+
+  while( goodSym < lettersInText){
+    printText();
+
+    const char c = getch();
+
     if(allSum > 0 && c == 127){ // delit
       if(allSum == goodSym)
         --goodSym;
@@ -141,8 +147,9 @@ weighMaster typingSample(const std::string& text){
     }
 
     printStat(statwindow,"RealTimeStat",result.getSamplesAmount(),goodSym);
-    wrefresh(subwindow);
+    //wrefresh(subwindow);
   }
+  fprintf(logfile,"finish texts\n");
   result.normalize();
 
   delwin(statwindow);
@@ -155,18 +162,17 @@ weighMaster typingSample(const std::string& text){
       X_POINT_SUBWINDOW
   );
   if(reswindow == nullptr){
-    std::cerr << "error, dos not open subwindow"<< std::endl;
+    fprintf(logfile,"dosnt open reswindow exit()\n");
     endwin();
     exit(100);
   }
 
   init_pair(3,COLOR_BLACK,COLOR_WHITE);
-
   wbkgd(reswindow,COLOR_PAIR(3));
   printStat(reswindow,"LastFinishStat",result.getSamplesAmount(),goodSym);
-  wrefresh(reswindow);
   delwin(reswindow);
 
+  fprintf(logfile,"return from typingsample()\n");
   return result;
 }
 #endif // TYPING_SAMPLE_HXX_INCLUDED___
