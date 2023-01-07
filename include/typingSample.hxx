@@ -92,11 +92,9 @@ weighMaster typingSample(const std::string& text){
 
   printStat(statwindow,"PleaseStartTyping",0,0);
 
-  while( goodSym < lettersInText){
+  const auto printText = [&subwindow,&text,&goodSym,&allSum,lettersInText](){
     wclear(subwindow);
-
     wattron(subwindow,A_BOLD | COLOR_PAIR(2));
-
     for(int i = 0; i < goodSym;++i){
       wprintw(subwindow,"%c",text[i]);
     }
@@ -112,14 +110,19 @@ weighMaster typingSample(const std::string& text){
     wattroff(subwindow,COLOR_PAIR(1));
 
     wattroff(subwindow,A_BLINK);
-
     for(int i = allSum; i < lettersInText;++i){
       wprintw(subwindow,"%c",text[i]==' ' ? '_' : text[i]);
     }
     wattroff(subwindow,A_REVERSE);
-    wrefresh(subwindow);
 
-    char c = getch();
+    wrefresh(subwindow);
+  };
+
+  while( goodSym < lettersInText){
+    printText();
+
+    const char c = getch();
+
     if(allSum > 0 && c == 127){ // delit
       if(allSum == goodSym)
         --goodSym;
