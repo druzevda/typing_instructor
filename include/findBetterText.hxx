@@ -135,13 +135,17 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
     weights.clear();
     wordsMap.insert({weightForThisText,wordsCount});
   }
-  const auto bestWordPlace = (*wordsMap.begin()).second;
-  const auto bestWordWeigh = (*wordsMap.begin()).first;
-  const std::string& bestWord = words[bestWordPlace];
 
-  std::fprintf(logfile,"best word =%s weigh=%lf\n",bestWord.c_str(),bestWordWeigh);
-
+  for(const auto& [currWordWeigh,currWordPlace] : wordsMap){
+    const std::string& currWord = words[currWordPlace];
+    if(currWord.size() >= minWordSize_forOneWordText){
+      std::fprintf(logfile,"best word =%s weigh=%lf\n",currWord.c_str(),currWordWeigh);
+      fflush(logfile);
+      return currWord;
+    }
+  }
+  std::fprintf(logfile,"error dosnt have word with more letters\n");
   fflush(logfile);
-  return bestWord;
+  return std::string{"specialWord"};
 }
 #endif  // FIND_BETTER_TEXT_HXX_INCLUDED

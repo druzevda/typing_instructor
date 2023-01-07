@@ -88,6 +88,7 @@ const std::vector<std::string> menu_choices{
 };
 
 constexpr uint32_t maxTextFromWordsSize = 100;
+constexpr uint32_t minWordSize_forOneWordText = 4;
 
 const std::vector<std::string> menu_descriptions{
   "(autochoice texts, focus on your weak points)",
