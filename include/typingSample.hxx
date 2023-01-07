@@ -6,6 +6,7 @@
 #include <chrono>
 
 weighMaster typingSample(const std::string& text){
+  fprintf(logfile,"in typing sample\n");
   weighMaster result(lettersAmount);
   WINDOW* subwindow = newwin(
       Y_SIZE_SUBWINDOW,
@@ -14,7 +15,7 @@ weighMaster typingSample(const std::string& text){
       X_POINT_SUBWINDOW
   );
   if(subwindow == nullptr){
-    std::cerr << "error, dos not open subwindow"<< std::endl;
+    fprintf(logfile,"dosnt open subwindow exit()\n");
     delwin(subwindow);
     endwin();
     exit(100);
@@ -28,7 +29,8 @@ weighMaster typingSample(const std::string& text){
   );
 
   if(statwindow == nullptr){
-    std::cerr << "error, dos not open subwindow"<< std::endl;
+    fprintf(logfile,"dosnt open statwindow exit()\n");
+    delwin(subwindow);
     delwin(statwindow);
     delwin(subwindow);
     endwin();
@@ -39,7 +41,7 @@ weighMaster typingSample(const std::string& text){
   int allSum = 0;
 
   if(has_colors()==FALSE){
-    std::cerr << "error, dos not init colors "<< std::endl;
+    fprintf(logfile,"dosnt has_colors()  exit()\n");
     delwin(subwindow);
     endwin();
     exit(100);
@@ -147,6 +149,7 @@ weighMaster typingSample(const std::string& text){
     printStat(statwindow,"RealTimeStat",result.getSamplesAmount(),goodSym);
     //wrefresh(subwindow);
   }
+  fprintf(logfile,"finish texts\n");
   result.normalize();
 
   delwin(statwindow);
@@ -159,7 +162,7 @@ weighMaster typingSample(const std::string& text){
       X_POINT_SUBWINDOW
   );
   if(reswindow == nullptr){
-    std::cerr << "error, dos not open subwindow"<< std::endl;
+    fprintf(logfile,"dosnt open reswindow exit()\n");
     endwin();
     exit(100);
   }
@@ -169,6 +172,7 @@ weighMaster typingSample(const std::string& text){
   printStat(reswindow,"LastFinishStat",result.getSamplesAmount(),goodSym);
   delwin(reswindow);
 
+  fprintf(logfile,"return from typingsample()\n");
   return result;
 }
 #endif // TYPING_SAMPLE_HXX_INCLUDED___
