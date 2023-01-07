@@ -64,6 +64,7 @@ weighMaster typingSample(const std::string& text){
   const int lettersInText = text.size();
 
   const auto begin = std::chrono::system_clock::now();
+
   auto printStat=[&begin](WINDOW* curWin,const std::string& header,const int errorsAmount,const int goodSymbols){
     wclear(curWin);
     const double errorsProc = goodSymbols==0 ? 0.0 : double(errorsAmount)/goodSymbols * 100.0;
@@ -144,7 +145,7 @@ weighMaster typingSample(const std::string& text){
     }
 
     printStat(statwindow,"RealTimeStat",result.getSamplesAmount(),goodSym);
-    wrefresh(subwindow);
+    //wrefresh(subwindow);
   }
   result.normalize();
 
@@ -164,10 +165,8 @@ weighMaster typingSample(const std::string& text){
   }
 
   init_pair(3,COLOR_BLACK,COLOR_WHITE);
-
   wbkgd(reswindow,COLOR_PAIR(3));
   printStat(reswindow,"LastFinishStat",result.getSamplesAmount(),goodSym);
-  wrefresh(reswindow);
   delwin(reswindow);
 
   return result;
