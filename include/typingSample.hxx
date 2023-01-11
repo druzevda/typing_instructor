@@ -61,7 +61,6 @@ weighMaster typingSample(const std::string& text){
 
 
   wrefresh(stdscr);
-  wrefresh(statwindow);
 
   const int lettersInText = text.size();
 
