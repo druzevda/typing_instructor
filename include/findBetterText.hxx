@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include "weighMaster.hxx"
+#include <cctype>
 int findBetterText(const std::vector<double>& userWeighs, const std::vector<std::string>& texts){
   std::fprintf(logfile,"in findBetterText\n");
   char buff[3000];
@@ -25,7 +26,7 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
       char prevSymbol = ' ';
       char prevIndex = 0;
       for(int symbolCount = 0; symbolCount < len; ++symbolCount){
-          const char& curSymbol = buff[symbolCount];
+          const char& curSymbol = std::tolower(buff[symbolCount]);
           const int curIndex = lettersMap[curSymbol];
 
           weights.makeSample(prevIndex,curIndex);
@@ -61,7 +62,7 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
     char prevSymbol = ' ';
     char prevIndex = 0;
     for(int symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
-      const char& curSymbol = curWord[symbolCount];
+      const char& curSymbol = std::tolower(curWord[symbolCount]);
       const int curIndex = lettersMap[curSymbol];
 
       weights.makeSample(prevIndex,curIndex);
@@ -118,7 +119,7 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
     char prevSymbol = ' ';
     char prevIndex = 0;
     for(int symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
-      const char& curSymbol = curWord[symbolCount];
+      const char& curSymbol = std::tolower(curWord[symbolCount]);
       const int curIndex = lettersMap[curSymbol];
 
       weights.makeSample(prevIndex,curIndex);
