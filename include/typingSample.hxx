@@ -61,11 +61,10 @@ weighMaster typingSample(const std::string& text){
 
 
   wrefresh(stdscr);
-  wrefresh(statwindow);
 
   const int lettersInText = text.size();
 
-  const auto begin = std::chrono::system_clock::now();
+  auto begin = std::chrono::system_clock::now();
 
   auto printStat=[&begin](WINDOW* curWin,const std::string& header,const int errorsAmount,const int goodSymbols){
     wclear(curWin);
@@ -125,6 +124,8 @@ weighMaster typingSample(const std::string& text){
     printText();
 
     const char c = getch();
+    if(allSum==0)
+      begin = std::chrono::system_clock::now();
 
     if(allSum > 0 && c == 127){ // delit
       if(allSum == goodSym)
