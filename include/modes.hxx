@@ -1,18 +1,28 @@
 #ifndef MODES_HXX_INCLUDED_________________
 #define MODES_HXX_INCLUDED_________________
 #include <random>
+#include "config.hxx"
 void learningByErrorsTextes_mode(){
+  fprintf(logfile,"in learning by errors TEXTES mode\n");
+
   weighMaster personMaster(lettersAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
+
   while(true){
     const int betterText = findBetterText(personMaster.getWeights(),texts);
-    printw("your better text = %s", texts[betterText].c_str());
     const std::string newText = scanTextToString(texts[betterText]);
+
+    fprintf(logfile,"better texts is [%d] [%s] \n",betterText,newText.c_str());
+
     personMaster = typingSample(newText);
   }
+
+  fprintf(logfile,"end learning by errors Textes mode\n");
 }
 
 void learningByErrorsWords_mode(){
+  fprintf(logfile,"in learning by errors WORDS mode\n");
+
   weighMaster personMaster(lettersAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
@@ -20,9 +30,13 @@ void learningByErrorsWords_mode(){
     const std::string newText = constructBetterWords(personMaster.getWeights(), buff);
     personMaster = typingSample(newText);
   }
+
+  fprintf(logfile,"end learning by errors WORDS mode\n");
 }
 
 void randomWord_mode(){
+  fprintf(logfile,"in random WORD mode\n");
+
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   std::mt19937 mersene(std::random_device{}());
   std::uniform_int_distribution<> unif(0,buff.size());
@@ -35,9 +49,13 @@ void randomWord_mode(){
     const std::string newText = constructTextFromWord(word);
     const auto personMaster = typingSample(newText);
   }
+
+  fprintf(logfile,"end random WORD mode\n");
 }
 
 void learningByErrorsOneWord_mode(){
+  fprintf(logfile,"in learnign by errors WORD mode");
+
   weighMaster personMaster(lettersAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
 
@@ -50,5 +68,7 @@ void learningByErrorsOneWord_mode(){
     const std::string newText = constructTextFromWord(realyBest);
     personMaster = typingSample(newText);
   }
+
+  fprintf(logfile,"end learnign by errors WORD mode");
 }
 #endif //  MODES_HXX_INCLUDED_________________
