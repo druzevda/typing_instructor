@@ -82,9 +82,11 @@ void initAll(){
 
 const std::vector<std::string> menu_choices{
   "0 TEXT",
-  "1 WORDS",
-  "2 WORD",
-  "3 WORD",
+  "1 TEXT",
+  "2 WORDS",
+  "3 WORDS",
+  "4 WORD",
+  "5 WORD",
 };
 
 constexpr uint32_t maxTextFromWordsSize = 100;
@@ -92,7 +94,9 @@ constexpr uint32_t minWordSize_forOneWordText = 4;
 
 const std::vector<std::string> menu_descriptions{
   "(autochoice texts, focus on your weak points)",
+  "(autochoice texts, random choice)",
   "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ letters)",
+  "(autochoice some words, random choice, " + std::to_string(maxTextFromWordsSize) + "+ letters)",
   "(one word, n times, focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ letters )",
   "(one word, n times, random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ letters )"
 };

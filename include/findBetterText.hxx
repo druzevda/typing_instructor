@@ -1,5 +1,6 @@
 #ifndef FIND_BETTER_TEXT_HXX_INCLUDED
 #define FIND_BETTER_TEXT_HXX_INCLUDED
+#include <random>
 #include <map>
 #include "config.hxx"
 #include <iostream>
@@ -95,6 +96,25 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
   return result;
 }
 
+std::string constructTextFromWords(const std::vector<std::string>& buff){
+
+  std::fprintf(logfile,"in constructTextFromWords\n");
+  std::mt19937 mersenne(std::random_device{}());
+  std::uniform_int_distribution<> unif(0,buff.size());
+  std::string result{};
+  while(result.size() < maxTextFromWordsSize){
+    const auto randomWordNum = unif(mersenne);
+    const auto& word = buff[randomWordNum];
+    result += word;
+    if(result.size()>= maxTextFromWordsSize){
+      break;
+    }else{
+      result+= " ";
+    }
+  }
+  fflush(logfile);
+  return result;
+}
 std::string constructTextFromWord(const std::string& word){
   std::fprintf(logfile,"in constructTextFromWord word=%s\n",word.c_str());
   std::string result{};

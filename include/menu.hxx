@@ -23,9 +23,11 @@ void menu(){
   my_items[n_choices] = (ITEM *)NULL;
 
   set_item_userptr(my_items[0],(void*)learningByErrorsTextes_mode);
-  set_item_userptr(my_items[1],(void*)learningByErrorsWords_mode);
-  set_item_userptr(my_items[2],(void*)learningByErrorsOneWord_mode);
-  set_item_userptr(my_items[3],(void*)randomWord_mode);
+  set_item_userptr(my_items[1],(void*)randomText_mode);
+  set_item_userptr(my_items[2],(void*)learningByErrorsWords_mode);
+  set_item_userptr(my_items[3],(void*)randomWords_mode);
+  set_item_userptr(my_items[4],(void*)learningByErrorsOneWord_mode);
+  set_item_userptr(my_items[5],(void*)randomWord_mode);
 
   my_menu = new_menu((ITEM **)my_items);
   post_menu(my_menu);
@@ -51,6 +53,10 @@ void menu(){
 
   free_item(my_items[0]);
   free_item(my_items[1]);
+  free_item(my_items[2]);
+  free_item(my_items[3]);
+  free_item(my_items[4]);
+  free_item(my_items[5]);
   free_menu(my_menu);
 }
 #endif // MENU_HXX_INCLUDED_____

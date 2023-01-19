@@ -34,6 +34,36 @@ void learningByErrorsWords_mode(){
   fprintf(logfile,"end learning by errors WORDS mode\n");
 }
 
+void randomWords_mode(){
+  fprintf(logfile,"in random WORDS mode\n");
+
+  const std::vector<std::string> buff = scanWordsToString(wordsFile);
+  assert(buff.size() > 0);
+
+  while(true){
+    const std::string newText = constructTextFromWords(buff);
+    const auto personMaster = typingSample(newText);
+  }
+
+  fprintf(logfile,"end random WORD mode\n");
+}
+void randomText_mode(){
+  fprintf(logfile,"in random TEXTES mode\n");
+
+  std::mt19937 mersene(std::random_device{}());
+  std::uniform_int_distribution<> unif(0,texts.size());
+
+  while(true){
+    const int randomText = unif(mersene);
+    const std::string newText = scanTextToString(texts[randomText]);
+
+    fprintf(logfile,"random texts is [%d] [%s] \n",randomText,newText.c_str());
+
+    const auto personMaster = typingSample(newText);
+  }
+
+  fprintf(logfile,"end learning by errors Textes mode\n");
+}
 void randomWord_mode(){
   fprintf(logfile,"in random WORD mode\n");
 
