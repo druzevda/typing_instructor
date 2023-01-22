@@ -5,7 +5,7 @@
 void learningByErrorsTextes_mode(){
   fprintf(logfile,"in learning by errors TEXTES mode\n");
 
-  weighMaster personMaster(lettersAmount);
+  weighMaster personMaster(symbolsAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
 
   while(true){
@@ -23,7 +23,7 @@ void learningByErrorsTextes_mode(){
 void learningByErrorsWords_mode(){
   fprintf(logfile,"in learning by errors WORDS mode\n");
 
-  weighMaster personMaster(lettersAmount);
+  weighMaster personMaster(symbolsAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   while(true){
@@ -86,7 +86,7 @@ void randomWord_mode(){
 void learningByErrorsOneWord_mode(){
   fprintf(logfile,"in learnign by errors WORD mode");
 
-  weighMaster personMaster(lettersAmount);
+  weighMaster personMaster(symbolsAmount);
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.");
 
   const std::vector<std::string> buff = scanWordsToString(wordsFile);

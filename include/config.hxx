@@ -8,10 +8,10 @@
 #include <unordered_map>
 #include <curses.h>
 
-const std::string letters{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
-const uint32_t lettersAmount = letters.size();
+const std::string symbols{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
+const uint32_t symbolsAmount = symbols.size();
 
-std::unordered_map<char,double> lettersMap{ };
+std::unordered_map<char,double> symbolsMap{ };
 
 const std::vector<std::string> texts{
   "a_great_summer_vacation.txt",
@@ -53,8 +53,8 @@ FILE* logfile = nullptr;
 
 void initAll(){
 
-  for(int i = 0; i < lettersAmount; ++i){
-    lettersMap.insert({letters[i],i});
+  for(int i = 0; i < symbolsAmount; ++i){
+    symbolsMap.insert({symbols[i],i});
   }
 
   initscr();
@@ -91,10 +91,10 @@ constexpr uint32_t minWordSize_forOneWordText = 4;
 const std::vector<std::string> menu_descriptions{
   "(autochoice texts, focus on your weak points)",
   "(autochoice texts, random choice)",
-  "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ letters)",
-  "(autochoice some words, random choice, " + std::to_string(maxTextFromWordsSize) + "+ letters)",
-  "(one word, n times, focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ letters )",
-  "(one word, n times, random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ letters )"
+  "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
+  "(autochoice some words, random choice, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
+  "(one word, n times, focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
+  "(one word, n times, random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )"
 };
 
 #endif // CONFIG_HXX_INCLUDED_______

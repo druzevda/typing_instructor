@@ -10,7 +10,7 @@
 int findBetterText(const std::vector<double>& userWeighs, const std::vector<std::string>& texts){
   std::fprintf(logfile,"in findBetterText\n");
   char buff[3000];
-  weighMaster weights(lettersAmount);
+  weighMaster weights(symbolsAmount);
   int bestText = 0;
   double bestValue = -1;
 
@@ -28,7 +28,7 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
       char prevIndex = 0;
       for(int symbolCount = 0; symbolCount < len; ++symbolCount){
           const char& curSymbol = std::tolower(buff[symbolCount]);
-          const int curIndex = lettersMap[curSymbol];
+          const int curIndex = symbolsMap[curSymbol];
 
           weights.makeSample(prevIndex,curIndex);
 
@@ -56,7 +56,7 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
 }
 std::string constructBetterWords(const std::vector<double>& userWeighs, const std::vector<std::string>& words){
   std::fprintf(logfile,"in constructBetterWords\n");
-  weighMaster weights(lettersAmount);
+  weighMaster weights(symbolsAmount);
   std::multimap<double,int,std::greater<double>> wordsMap;
   for(uint32_t wordsCount = 0; wordsCount < words.size(); ++wordsCount){ const std::string& curWord = words[wordsCount];
     const uint32_t curWordSize = curWord.size();
@@ -64,7 +64,7 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
     char prevIndex = 0;
     for(int symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
       const char& curSymbol = std::tolower(curWord[symbolCount]);
-      const int curIndex = lettersMap[curSymbol];
+      const int curIndex = symbolsMap[curSymbol];
 
       weights.makeSample(prevIndex,curIndex);
 
@@ -132,7 +132,7 @@ std::string constructTextFromWord(const std::string& word){
 
 std::string findBetterWord(const std::vector<double>& userWeighs, const std::vector<std::string>& words){
   std::fprintf(logfile,"in findBetterWord\n");
-  weighMaster weights(lettersAmount);
+  weighMaster weights(symbolsAmount);
   std::multimap<double,int,std::greater<double>> wordsMap;
   for(uint32_t wordsCount = 0; wordsCount < words.size(); ++wordsCount){ const std::string& curWord = words[wordsCount];
     const uint32_t curWordSize = curWord.size();
@@ -140,7 +140,7 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
     char prevIndex = 0;
     for(int symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
       const char& curSymbol = std::tolower(curWord[symbolCount]);
-      const int curIndex = lettersMap[curSymbol];
+      const int curIndex = symbolsMap[curSymbol];
 
       weights.makeSample(prevIndex,curIndex);
 
@@ -165,7 +165,7 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
       return currWord;
     }
   }
-  std::fprintf(logfile,"error dosnt have word with more letters\n");
+  std::fprintf(logfile,"error dosnt have word with more symbols\n");
   fflush(logfile);
   return std::string{"specialWord"};
 }

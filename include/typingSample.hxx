@@ -7,7 +7,7 @@
 
 weighMaster typingSample(const std::string& text){
   fprintf(logfile,"in typing sample\n");
-  weighMaster result(lettersAmount);
+  weighMaster result(symbolsAmount);
   WINDOW* subwindow = newwin(
       Y_SIZE_SUBWINDOW,
       X_SIZE_SUBWINDOW,
@@ -62,7 +62,7 @@ weighMaster typingSample(const std::string& text){
 
   wrefresh(stdscr);
 
-  const int lettersInText = text.size();
+  const int symbolsInText = text.size();
 
   auto begin = std::chrono::system_clock::now();
 
@@ -94,7 +94,7 @@ weighMaster typingSample(const std::string& text){
 
   printStat(statwindow,"PleaseStartTyping",0,0);
 
-  const auto printText = [&subwindow,&text,&goodSym,&allSum,lettersInText](){
+  const auto printText = [&subwindow,&text,&goodSym,&allSum,symbolsInText](){
     wclear(subwindow);
     wattron(subwindow,A_BOLD | COLOR_PAIR(2));
     for(int i = 0; i < goodSym;++i){
@@ -112,7 +112,7 @@ weighMaster typingSample(const std::string& text){
     wattroff(subwindow,COLOR_PAIR(1));
 
     wattroff(subwindow,A_BLINK);
-    for(int i = allSum; i < lettersInText;++i){
+    for(int i = allSum; i < symbolsInText;++i){
       wprintw(subwindow,"%c",text[i]==' ' ? '_' : text[i]);
     }
     wattroff(subwindow,A_REVERSE);
@@ -120,7 +120,7 @@ weighMaster typingSample(const std::string& text){
     wrefresh(subwindow);
   };
 
-  while( goodSym < lettersInText){
+  while( goodSym < symbolsInText){
     printText();
 
     const char c = getch();
@@ -137,12 +137,12 @@ weighMaster typingSample(const std::string& text){
       }else{//first error
         const char prevChar = allSum==0 ? ' ' : text[allSum-1];
         const char nowChar = text[allSum];
-        const char prevIndex = lettersMap[prevChar];
-        const char nowIndex = lettersMap[nowChar];
+        const char prevIndex = symbolsMap[prevChar];
+        const char nowIndex = symbolsMap[nowChar];
         result.makeSample(prevIndex,nowIndex);
       }
       ++allSum;
-    }else if (allSum >= lettersInText){
+    }else if (allSum >= symbolsInText){
     }else{
       ++allSum;
     }
