@@ -169,4 +169,23 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
   fflush(logfile);
   return std::string{"specialWord"};
 }
+std::string constructRandomLettersText(){
+
+  std::fprintf(logfile,"in constructRandomLettersText \n");
+
+  std::mt19937 mersene{std::random_device{}()};
+  std::uniform_int_distribution<> unif(0,lettersAmount-1);
+
+  std::string result{};
+  result.reserve(maxTextFromWordsSize);
+
+  while(result.size() < maxTextFromWordsSize){
+    const auto randomLetterNum = unif(mersene);
+    const auto randomLetter = letters[randomLetterNum];
+    result.push_back(randomLetter);
+  }
+
+  fflush(logfile);
+  return result;
+}
 #endif  // FIND_BETTER_TEXT_HXX_INCLUDED
