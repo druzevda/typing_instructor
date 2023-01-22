@@ -8,14 +8,10 @@
 #include <unordered_map>
 #include <curses.h>
 
-constexpr uint32_t lettersAmount = 43;
-constexpr char letters[lettersAmount]={" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
-std::unordered_map<char,double> lettersMap{ };
+const std::string letters{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
+const uint32_t lettersAmount = letters.size();
 
-enum class trainingMode{
-  FIX_WEAK_POINTS,
-  CHECK_WEAK_POINTS,
-};
+std::unordered_map<char,double> lettersMap{ };
 
 const std::vector<std::string> texts{
   "a_great_summer_vacation.txt",
