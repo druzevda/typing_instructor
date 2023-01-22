@@ -11,6 +11,9 @@
 const std::string symbols{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
 const uint32_t symbolsAmount = symbols.size();
 
+const std::string letters{" abcdefghijklmnopqrstuvwxyz"};
+const uint32_t lettersAmount = letters.size();
+
 std::unordered_map<char,double> symbolsMap{ };
 
 const std::vector<std::string> texts{
@@ -52,7 +55,6 @@ const std::string wordsFile{"words.txt"};
 FILE* logfile = nullptr;
 
 void initAll(){
-
   for(int i = 0; i < symbolsAmount; ++i){
     symbolsMap.insert({symbols[i],i});
   }
@@ -73,6 +75,8 @@ void initAll(){
     std::cerr << "errror of opening file" << std::endl;
     endwin();
     exit(1);
+  }else{
+    std::fprintf(logfile,"START TYPING INSTRUCTOR");
   }
 }
 
@@ -83,6 +87,7 @@ const std::vector<std::string> menu_choices{
   "3 WORDS",
   "4 WORD",
   "5 WORD",
+  "6 LETTERS"
 };
 
 constexpr uint32_t maxTextFromWordsSize = 100;
@@ -94,7 +99,8 @@ const std::vector<std::string> menu_descriptions{
   "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
   "(autochoice some words, random choice, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
   "(one word, n times, focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
-  "(one word, n times, random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )"
+  "(one word, n times, random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
+  "(random letters "+ std::to_string(maxTextFromWordsSize) +  " symbols )"
 };
 
 #endif // CONFIG_HXX_INCLUDED_______
