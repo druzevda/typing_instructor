@@ -81,13 +81,13 @@ void initAll(){
 }
 
 const std::vector<std::string> menu_choices{
-  "0 TEXT",
-  "1 TEXT",
-  "2 WORDS",
-  "3 WORDS",
-  "4 WORD",
-  "5 WORD",
-  "6 LETTERS"
+  "0 TEXT ",
+  "1 TEXT ",
+  "2 WORDS ",
+  "3 WORDS ",
+  "4 WORD ",
+  "5 WORD ",
+  "6 LETTERS "
 };
 
 constexpr uint32_t maxTextFromWordsSize = 100;
@@ -100,7 +100,7 @@ const std::vector<std::string> menu_descriptions{
   "(autochoice some words, random choice, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
   "(one word, n times, focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
   "(one word, n times, random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
-  "(random letters "+ std::to_string(maxTextFromWordsSize) +  " symbols )"
+  "(random letters, "+ std::to_string(maxTextFromWordsSize) +  " symbols )"
 };
 
 #endif // CONFIG_HXX_INCLUDED_______
