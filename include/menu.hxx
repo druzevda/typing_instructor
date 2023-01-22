@@ -28,6 +28,7 @@ void menu(){
   set_item_userptr(my_items[3],(void*)randomWords_mode);
   set_item_userptr(my_items[4],(void*)learningByErrorsOneWord_mode);
   set_item_userptr(my_items[5],(void*)randomWord_mode);
+  set_item_userptr(my_items[6],(void*)randomLetters_mode);
 
   my_menu = new_menu((ITEM **)my_items);
   post_menu(my_menu);
@@ -57,6 +58,7 @@ void menu(){
   free_item(my_items[3]);
   free_item(my_items[4]);
   free_item(my_items[5]);
+  free_item(my_items[6]);
   free_menu(my_menu);
 }
 #endif // MENU_HXX_INCLUDED_____

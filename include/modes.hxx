@@ -64,6 +64,18 @@ void randomText_mode(){
 
   fprintf(logfile,"end learning by errors Textes mode\n");
 }
+void randomLetters_mode(){
+  fprintf(logfile,"in random LETTERS mode\n");
+
+  while(true){
+    const std::string newText = constructRandomLettersText();
+    std::fprintf(logfile,"text->%s<-\n",newText.c_str());
+    fflush(logfile);
+    const auto personMaster = typingSample(newText);
+  }
+
+  fprintf(logfile,"end random LETTERS mode\n");
+}
 void randomWord_mode(){
   fprintf(logfile,"in random WORD mode\n");
 
