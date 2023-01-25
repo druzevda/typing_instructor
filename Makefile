@@ -11,6 +11,7 @@ OBJ=./obj
 
 OBJ_FILES=\
           $(OBJ)/main.o\
+          $(OBJ)/typingSample.o\
           $(OBJ)/weighMaster.o
 
 DEBUG=-D NDEBUG
@@ -51,9 +52,16 @@ $(EXE):\
 
 OBJ_COMPILE: $(OBJ)\
 						$(OBJ)/main.o\
+						$(OBJ)/typingSample.o\
 						$(OBJ)/weighMaster.o
 
 ##########################################################################################3
+
+$(OBJ)/typingSample.o:\
+          $(SRC)/typingSample.cpp\
+          $(INCLUDE)/typingSample.hxx
+	$(PRINT_BUILD)
+	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/weighMaster.o:\
           $(SRC)/weighMaster.cpp\

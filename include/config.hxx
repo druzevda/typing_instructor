@@ -9,10 +9,10 @@
 #include <curses.h>
 
 const std::string symbols{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
-const uint32_t symbolsAmount = symbols.size();
+const extern uint32_t symbolsAmount = symbols.size();
 
 const std::string letters{" abcdefghijklmnopqrstuvwxyz"};
-const uint32_t lettersAmount = letters.size();
+const extern uint32_t lettersAmount = letters.size();
 
 std::unordered_map<char,double> symbolsMap{ };
 
