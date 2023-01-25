@@ -12,6 +12,7 @@ OBJ=./obj
 OBJ_FILES=\
           $(OBJ)/main.o\
           $(OBJ)/menu.o\
+          $(OBJ)/constructFunctions.o\
           $(OBJ)/typingSample.o\
           $(OBJ)/weighMaster.o
 
@@ -54,10 +55,17 @@ $(EXE):\
 OBJ_COMPILE: $(OBJ)\
 						$(OBJ)/main.o\
 						$(OBJ)/menu.o\
+						$(OBJ)/constructFunctions.o\
 						$(OBJ)/typingSample.o\
 						$(OBJ)/weighMaster.o
 
 ##########################################################################################3
+
+$(OBJ)/constructFunctions.o:\
+          $(SRC)/constructFunctions.cpp\
+          $(INCLUDE)/constructFunctions.hxx
+	$(PRINT_BUILD)
+	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/typingSample.o:\
           $(SRC)/typingSample.cpp\

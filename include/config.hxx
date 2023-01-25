@@ -8,10 +8,10 @@
 #include <unordered_map>
 #include <curses.h>
 
-const std::string symbols{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
+const extern std::string symbols{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
 const extern uint32_t symbolsAmount = symbols.size();
 
-const std::string letters{" abcdefghijklmnopqrstuvwxyz"};
+const extern std::string letters{" abcdefghijklmnopqrstuvwxyz"};
 const extern uint32_t lettersAmount = letters.size();
 
 std::unordered_map<char,double> symbolsMap{ };
@@ -49,8 +49,8 @@ int Y_POINT_SUBWINDOW =0;
 int X_SIZE_SUBWINDOW  =0;
 int Y_SIZE_SUBWINDOW  =0;
 
-const std::string textsFolder{"./texts/"};
-const std::string wordsFile{"words.txt"};
+const extern std::string textsFolder{"./texts/"};
+const extern std::string wordsFile{"words.txt"};
 
 FILE* logfile = nullptr;
 
@@ -90,8 +90,8 @@ const extern std::vector<std::string> menu_choices{
   "6 LETTERS "
 };
 
-constexpr uint32_t maxTextFromWordsSize = 100;
-constexpr uint32_t minWordSize_forOneWordText = 4;
+extern constexpr uint32_t maxTextFromWordsSize = 100;
+extern constexpr uint32_t minWordSize_forOneWordText = 4;
 
 const extern std::vector<std::string> menu_descriptions{
   "(autochoice texts, focus on your weak points)",
