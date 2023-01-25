@@ -57,45 +57,51 @@ $(EXE):\
 	@$(CC) $(OBJ_FILES) -o $@ -I$(INCLUDE) $(CFLAGS)
 
 ##########################################################################################3
+configuration: $(INCLUDE)/config.hxx
 
 OBJ_COMPILE: $(OBJ)\
 						$(OBJ_FILES)
 ##########################################################################################3
 
-$(OBJ)/modes.o:\
+$(OBJ)/modes.o: configuration\
           $(SRC)/modes.cpp\
           $(INCLUDE)/modes.hxx
 	$(PRINT_BUILD)
-	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
+	@$(CC) -c $(SRC)/modes.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/constructFunctions.o:\
+          configuration\
           $(SRC)/constructFunctions.cpp\
           $(INCLUDE)/constructFunctions.hxx
 	$(PRINT_BUILD)
-	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
+	@$(CC) -c $(SRC)/constructFunctions.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/typingSample.o:\
+          configuration\
           $(SRC)/typingSample.cpp\
           $(INCLUDE)/typingSample.hxx
 	$(PRINT_BUILD)
-	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
+	@$(CC) -c $(SRC)/typingSample.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/menu.o:\
+          configuration\
           $(SRC)/menu.cpp\
           $(INCLUDE)/menu.hxx
 	$(PRINT_BUILD)
-	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
+	@$(CC) -c $(SRC)/menu.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/weighMaster.o:\
+          configuration\
           $(SRC)/weighMaster.cpp\
           $(INCLUDE)/weighMaster.hxx
 	$(PRINT_BUILD)
-	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
+	@$(CC) -c $(SRC)/weighMaster.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/main.o:\
+          configuration\
           $(SRC)/main.cpp
 	$(PRINT_BUILD)
-	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
+	@$(CC) -c $(SRC)/main.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 ##########################################################################################
 ./texts:
@@ -105,7 +111,6 @@ $(OBJ)/main.o:\
 $(OBJ):
 	$(PRINT_MAKEDIRS)
 	@mkdir -p $(OBJ)
-
 
 clear:
 	@clear
