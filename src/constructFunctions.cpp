@@ -28,7 +28,7 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
   int bestText = 0;
   double bestValue = -1;
 
-  for(int textCount = 0; textCount < texts.size(); ++textCount){
+  for(uint32_t textCount = 0; textCount < texts.size(); ++textCount){
     const std::string& currentTextName = texts[textCount];
     const std::string fullPathToText = textsFolder+currentTextName;
     std::ifstream file{fullPathToText};
@@ -38,22 +38,20 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
     }
     while(file.getline(buff,3000)){
       const int len = strlen(buff);
-      char prevSymbol = ' ';
-      char prevIndex = 0;
+      char prevIndex = 0;// SPACE index
       for(int symbolCount = 0; symbolCount < len; ++symbolCount){
           const char& curSymbol = std::tolower(buff[symbolCount]);
           const int curIndex = symbolsMap[curSymbol];
 
           weights.makeSample(prevIndex,curIndex);
 
-          prevSymbol = curSymbol;
           prevIndex = curIndex;
       }
     }
     weights.normalize();
     double weightForThisText = 0.0;
     const std::vector<double>& weightsForThisText = weights.getWeights();
-    for(int i = 0; i < userWeighs.size(); ++i){
+    for(uint32_t i = 0; i < userWeighs.size(); ++i){
       weightForThisText+=userWeighs[i]*weightsForThisText[i];
     }
 
@@ -74,21 +72,19 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
   std::multimap<double,int,std::greater<double>> wordsMap;
   for(uint32_t wordsCount = 0; wordsCount < words.size(); ++wordsCount){ const std::string& curWord = words[wordsCount];
     const uint32_t curWordSize = curWord.size();
-    char prevSymbol = ' ';
-    char prevIndex = 0;
-    for(int symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
+    char prevIndex = 0;// SPACE index
+    for(uint32_t symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
       const char& curSymbol = std::tolower(curWord[symbolCount]);
       const int curIndex = symbolsMap[curSymbol];
 
       weights.makeSample(prevIndex,curIndex);
 
-      prevSymbol = curSymbol;
       prevIndex = curIndex;
     }
     weights.normalize();
     double weightForThisText = 0.0;
     const std::vector<double>& weightsForThisText = weights.getWeights();
-    for(int i = 0; i < userWeighs.size(); ++i){
+    for(uint32_t i = 0; i < userWeighs.size(); ++i){
       weightForThisText+=userWeighs[i]*weightsForThisText[i];
     }
     weights.clear();
@@ -150,21 +146,19 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
   std::multimap<double,int,std::greater<double>> wordsMap;
   for(uint32_t wordsCount = 0; wordsCount < words.size(); ++wordsCount){ const std::string& curWord = words[wordsCount];
     const uint32_t curWordSize = curWord.size();
-    char prevSymbol = ' ';
-    char prevIndex = 0;
-    for(int symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
+    char prevIndex = 0; // SPACE index
+    for(uint32_t symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
       const char& curSymbol = std::tolower(curWord[symbolCount]);
       const int curIndex = symbolsMap[curSymbol];
 
       weights.makeSample(prevIndex,curIndex);
 
-      prevSymbol = curSymbol;
       prevIndex = curIndex;
     }
     weights.normalize();
     double weightForThisText = 0.0;
     const std::vector<double>& weightsForThisText = weights.getWeights();
-    for(int i = 0; i < userWeighs.size(); ++i){
+    for(uint32_t i = 0; i < userWeighs.size(); ++i){
       weightForThisText+=userWeighs[i]*weightsForThisText[i];
     }
     weights.clear();

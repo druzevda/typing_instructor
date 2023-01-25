@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <fstream>
 #include <unordered_map>
 #include <curses.h>
 
@@ -55,7 +54,7 @@ const extern std::string wordsFile{"words.txt"};
 FILE* logfile = nullptr;
 
 void initAll(){
-  for(int i = 0; i < symbolsAmount; ++i){
+  for(uint32_t i = 0; i < symbolsAmount; ++i){
     symbolsMap.insert({symbols[i],i});
   }
 
