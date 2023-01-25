@@ -80,7 +80,7 @@ void initAll(){
   }
 }
 
-const std::vector<std::string> menu_choices{
+const extern std::vector<std::string> menu_choices{
   "0 TEXT ",
   "1 TEXT ",
   "2 WORDS ",
@@ -93,7 +93,7 @@ const std::vector<std::string> menu_choices{
 constexpr uint32_t maxTextFromWordsSize = 100;
 constexpr uint32_t minWordSize_forOneWordText = 4;
 
-const std::vector<std::string> menu_descriptions{
+const extern std::vector<std::string> menu_descriptions{
   "(autochoice texts, focus on your weak points)",
   "(autochoice texts, random choice)",
   "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
