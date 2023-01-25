@@ -43,6 +43,10 @@ run: $(EXE) ./texts
 	$(EXE)
 	$(PRINT_SUCSESS)
 
+debugrun: $(EXE) ./texts
+	$(PRINT_EXE)
+	@valgrind -q --show-reachable=yes --leak-check=full --error-exitcode=-1 --exit-on-first-error=no ./$(EXE)
+	$(PRINT_SUCSESS)
 ##########################################################################################3
 
 $(EXE):\
