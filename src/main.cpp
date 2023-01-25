@@ -1,7 +1,6 @@
 #include "config.hxx"
 #include "menu.hxx"
 int main(){
-
   initAll();
   if(COLS < 90 || LINES < 22){
     clear();
