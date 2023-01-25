@@ -16,7 +16,7 @@ const extern uint32_t lettersAmount = letters.size();
 
 std::unordered_map<char,double> symbolsMap{ };
 
-const std::vector<std::string> texts{
+const extern std::vector<std::string> texts{
   "a_great_summer_vacation.txt",
     "at_school.txt",
     "day_of_the_week.txt",

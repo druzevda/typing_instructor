@@ -12,13 +12,14 @@ OBJ=./obj
 OBJ_FILES=\
           $(OBJ)/main.o\
           $(OBJ)/menu.o\
+          $(OBJ)/modes.o\
           $(OBJ)/constructFunctions.o\
           $(OBJ)/typingSample.o\
           $(OBJ)/weighMaster.o
 
-DEBUG=-D NDEBUG
-NODEBUG=
-ISDEBUG=$(NODEBUG)
+DEBUG=
+NODEBUG=-D NDEBUG
+ISDEBUG=$(DEBUG)
 
 CFLAGS= -lmenu -lncurses -march=x86-64 $(ISDEBUG) -std=c++2a -fomit-frame-pointer -fexpensive-optimizations -O3 -pedantic-errors -pedantic  -fdiagnostics-show-option  -fdiagnostics-show-option -Wno-div-by-zero  -funroll-loops -fvariable-expansion-in-unroller -fprefetch-loop-arrays -freorder-blocks-and-partition -fno-cprop-registers -funswitch-loops -funsafe-loop-optimizations
 
@@ -54,12 +55,19 @@ $(EXE):\
 
 OBJ_COMPILE: $(OBJ)\
 						$(OBJ)/main.o\
+						$(OBJ)/modes.o\
 						$(OBJ)/menu.o\
 						$(OBJ)/constructFunctions.o\
 						$(OBJ)/typingSample.o\
 						$(OBJ)/weighMaster.o
 
 ##########################################################################################3
+
+$(OBJ)/modes.o:\
+          $(SRC)/modes.cpp\
+          $(INCLUDE)/modes.hxx
+	$(PRINT_BUILD)
+	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/constructFunctions.o:\
           $(SRC)/constructFunctions.cpp\
