@@ -1,11 +1,6 @@
-#include "weighMaster.hxx"
-#include "findBetterText.hxx"
-#include <iostream>
-#include "typingSample.hxx"
-#include "scanTextToString.hxx"
+#include "config.hxx"
 #include "menu.hxx"
 int main(){
-
   initAll();
   if(COLS < 90 || LINES < 22){
     clear();

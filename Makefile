@@ -11,13 +11,19 @@ OBJ=./obj
 
 OBJ_FILES=\
           $(OBJ)/main.o\
+          $(OBJ)/menu.o\
+          $(OBJ)/modes.o\
+          $(OBJ)/constructFunctions.o\
+          $(OBJ)/typingSample.o\
           $(OBJ)/weighMaster.o
 
-DEBUG=-D NDEBUG
-NODEBUG=
-ISDEBUG=$(NODEBUG)
+DEBUG=
+NODEBUG=-D NDEBUG
+ISDEBUG=$(DEBUG)
 
-CFLAGS= -lmenu -lncurses -march=x86-64 $(ISDEBUG) -std=c++2a -fomit-frame-pointer -fexpensive-optimizations -O3 -pedantic-errors -pedantic  -fdiagnostics-show-option  -fdiagnostics-show-option -Wno-div-by-zero  -funroll-loops -fvariable-expansion-in-unroller -fprefetch-loop-arrays -freorder-blocks-and-partition -fno-cprop-registers -funswitch-loops -funsafe-loop-optimizations
+LIBS= -lmenu -lncurses -lm
+OPTIMIZATION=-O3
+CFLAGS= $(LIBS) $(OPTIMIZATION) -march=x86-64 $(ISDEBUG) -std=c++2a -fomit-frame-pointer -fexpensive-optimizations -pedantic-errors -pedantic  -fdiagnostics-show-option  -fdiagnostics-show-option -Wno-div-by-zero  -funroll-loops -fvariable-expansion-in-unroller -fprefetch-loop-arrays -freorder-blocks-and-partition -fno-cprop-registers -funswitch-loops -funsafe-loop-optimizations -Wall -Wextra
 
 PRINT_CLEAR     =@echo "\e[1;29m CLEAR \e[0m"
 PRINT_PREPARE   =@echo "\e[1;29m PREPARE TO COMPILE \e[0m"
@@ -37,10 +43,13 @@ run: $(EXE) ./texts
 	$(EXE)
 	$(PRINT_SUCSESS)
 
+debugrun: $(EXE) ./texts
+	$(PRINT_EXE)
+	@valgrind -q --show-reachable=yes --leak-check=full --error-exitcode=-1 --exit-on-first-error=no ./$(EXE)
+	$(PRINT_SUCSESS)
 ##########################################################################################3
 
 $(EXE):\
-					clear\
           $(INCLUDE)\
           $(SRC)/$(MAIN)\
           OBJ_COMPILE
@@ -48,23 +57,51 @@ $(EXE):\
 	@$(CC) $(OBJ_FILES) -o $@ -I$(INCLUDE) $(CFLAGS)
 
 ##########################################################################################3
+configuration: $(INCLUDE)/config.hxx
 
 OBJ_COMPILE: $(OBJ)\
-						$(OBJ)/main.o\
-						$(OBJ)/weighMaster.o
-
+						$(OBJ_FILES)
 ##########################################################################################3
 
+$(OBJ)/modes.o: configuration\
+          $(SRC)/modes.cpp\
+          $(INCLUDE)/modes.hxx
+	$(PRINT_BUILD)
+	@$(CC) -c $(SRC)/modes.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
+
+$(OBJ)/constructFunctions.o:\
+          configuration\
+          $(SRC)/constructFunctions.cpp\
+          $(INCLUDE)/constructFunctions.hxx
+	$(PRINT_BUILD)
+	@$(CC) -c $(SRC)/constructFunctions.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
+
+$(OBJ)/typingSample.o:\
+          configuration\
+          $(SRC)/typingSample.cpp\
+          $(INCLUDE)/typingSample.hxx
+	$(PRINT_BUILD)
+	@$(CC) -c $(SRC)/typingSample.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
+
+$(OBJ)/menu.o:\
+          configuration\
+          $(SRC)/menu.cpp\
+          $(INCLUDE)/menu.hxx
+	$(PRINT_BUILD)
+	@$(CC) -c $(SRC)/menu.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
+
 $(OBJ)/weighMaster.o:\
+          configuration\
           $(SRC)/weighMaster.cpp\
           $(INCLUDE)/weighMaster.hxx
 	$(PRINT_BUILD)
-	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
+	@$(CC) -c $(SRC)/weighMaster.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/main.o:\
+          configuration\
           $(SRC)/main.cpp
 	$(PRINT_BUILD)
-	@$(CC) -c $< -o $@ -I$(INCLUDE) $(CFLAGS)
+	@$(CC) -c $(SRC)/main.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 ##########################################################################################
 ./texts:
@@ -74,7 +111,6 @@ $(OBJ)/main.o:\
 $(OBJ):
 	$(PRINT_MAKEDIRS)
 	@mkdir -p $(OBJ)
-
 
 clear:
 	@clear
