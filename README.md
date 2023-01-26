@@ -1,6 +1,16 @@
 ## Before running the application, [install the ncurses library](https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/), depending on your Linux distribution
 
 # Versions list:
+- 0.3 version
+    - minimal size for word
+    - tolower logic
+    - time from first symbol
+    - more logs
+    - symbols and letters logic
+    - so big refactor
+    - more object files
+    - 3 new modes
+    - debug versions
 - 0.2 version
     - 2 new mode
     - desctiption for menu choices
