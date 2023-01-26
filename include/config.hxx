@@ -4,19 +4,18 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <fstream>
 #include <unordered_map>
 #include <curses.h>
 
-const std::string symbols{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
-const uint32_t symbolsAmount = symbols.size();
+const extern std::string symbols{" abcdefghijklmnopqrstuvwxyz!?\"$\'1234568790"};
+const extern uint32_t symbolsAmount = symbols.size();
 
-const std::string letters{" abcdefghijklmnopqrstuvwxyz"};
-const uint32_t lettersAmount = letters.size();
+const extern std::string letters{" abcdefghijklmnopqrstuvwxyz"};
+const extern uint32_t lettersAmount = letters.size();
 
 std::unordered_map<char,double> symbolsMap{ };
 
-const std::vector<std::string> texts{
+const extern std::vector<std::string> texts{
   "a_great_summer_vacation.txt",
     "at_school.txt",
     "day_of_the_week.txt",
@@ -49,13 +48,13 @@ int Y_POINT_SUBWINDOW =0;
 int X_SIZE_SUBWINDOW  =0;
 int Y_SIZE_SUBWINDOW  =0;
 
-const std::string textsFolder{"./texts/"};
-const std::string wordsFile{"words.txt"};
+const extern std::string textsFolder{"./texts/"};
+const extern std::string wordsFile{"words.txt"};
 
 FILE* logfile = nullptr;
 
 void initAll(){
-  for(int i = 0; i < symbolsAmount; ++i){
+  for(uint32_t i = 0; i < symbolsAmount; ++i){
     symbolsMap.insert({symbols[i],i});
   }
 
@@ -80,7 +79,7 @@ void initAll(){
   }
 }
 
-const std::vector<std::string> menu_choices{
+const extern std::vector<std::string> menu_choices{
   "0 TEXT ",
   "1 TEXT ",
   "2 WORDS ",
@@ -90,10 +89,10 @@ const std::vector<std::string> menu_choices{
   "6 LETTERS "
 };
 
-constexpr uint32_t maxTextFromWordsSize = 100;
-constexpr uint32_t minWordSize_forOneWordText = 4;
+extern constexpr uint32_t maxTextFromWordsSize = 100;
+extern constexpr uint32_t minWordSize_forOneWordText = 4;
 
-const std::vector<std::string> menu_descriptions{
+const extern std::vector<std::string> menu_descriptions{
   "(autochoice texts, focus on your weak points)",
   "(autochoice texts, random choice)",
   "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
