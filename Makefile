@@ -120,4 +120,7 @@ clear:
 	@rm -f logfile
 	@rm -rf texts
 
+install:
+	@sudo apt install -y libncurses5-dev libncursesw5-dev g++ make git
+
 ##########################################################################################3
