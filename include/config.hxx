@@ -89,17 +89,17 @@ const extern std::vector<std::string> menu_choices{
   "6 LETTERS "
 };
 
-extern constexpr uint32_t maxTextFromWordsSize = 100;
-extern constexpr uint32_t minWordSize_forOneWordText = 4;
+constexpr extern uint32_t maxTextFromWordsSize = 100;
+constexpr extern uint32_t minWordSize_forOneWordText = 4;
 
 const extern std::vector<std::string> menu_descriptions{
-  "(autochoice texts, focus on your weak points)",
-  "(autochoice texts, random choice)",
-  "(autochoice some words, focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
-  "(autochoice some words, random choice, " + std::to_string(maxTextFromWordsSize) + "+ symbols)",
-  "(one word, n times, focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
-  "(one word, n times, random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
-  "(random letters, "+ std::to_string(maxTextFromWordsSize) +  " symbols )"
+  "( Focus on your weak points )",
+  "( Random choice )",
+  "( Focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ symbols )",
+  "( Random choice, " + std::to_string(maxTextFromWordsSize) + "+ symbols )",
+  "( Focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
+  "( Random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
+  "( Random choice, "+ std::to_string(maxTextFromWordsSize) +  " symbols )"
 };
 
 #endif // CONFIG_HXX_INCLUDED_______
