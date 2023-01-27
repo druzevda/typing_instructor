@@ -50,6 +50,14 @@ void learningByErrorsWords_mode(){
   personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.",code);
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   while(true){
+    switch(code){
+      case EXITCODE_TS::ALL_GOOD:
+      case EXITCODE_TS::RERUN_THIS_MODE:
+        break;
+      case EXITCODE_TS::TO_MENU:
+          return;
+        break;
+    }
     const std::string newText = constructBetterWords(personMaster.getWeights(), buff);
     personMaster = typingSample(newText,code);
   }
@@ -65,6 +73,14 @@ void randomWords_mode(){
   assert(buff.size() > 0);
 
   while(true){
+    switch(code){
+      case EXITCODE_TS::ALL_GOOD:
+      case EXITCODE_TS::RERUN_THIS_MODE:
+        break;
+      case EXITCODE_TS::TO_MENU:
+          return;
+        break;
+    }
     const std::string newText = constructTextFromWords(buff);
     const auto personMaster = typingSample(newText,code);
   }
@@ -79,6 +95,14 @@ void randomText_mode(){
   std::uniform_int_distribution<> unif(0,texts.size());
 
   while(true){
+    switch(code){
+      case EXITCODE_TS::ALL_GOOD:
+      case EXITCODE_TS::RERUN_THIS_MODE:
+        break;
+      case EXITCODE_TS::TO_MENU:
+          return;
+        break;
+    }
     const int randomText = unif(mersene);
     const std::string newText = scanTextToString(texts[randomText]);
 
@@ -94,6 +118,14 @@ void randomLetters_mode(){
   fprintf(logfile,"in random LETTERS mode\n");
 
   while(true){
+    switch(code){
+      case EXITCODE_TS::ALL_GOOD:
+      case EXITCODE_TS::RERUN_THIS_MODE:
+        break;
+      case EXITCODE_TS::TO_MENU:
+          return;
+        break;
+    }
     const std::string newText = constructRandomLettersText();
     std::fprintf(logfile,"text->%s<-\n",newText.c_str());
     fflush(logfile);
@@ -112,6 +144,14 @@ void randomWord_mode(){
   assert(buff.size() > 0);
 
   while(true){
+    switch(code){
+      case EXITCODE_TS::ALL_GOOD:
+      case EXITCODE_TS::RERUN_THIS_MODE:
+        break;
+      case EXITCODE_TS::TO_MENU:
+          return;
+        break;
+    }
     const int wordNum = unif(mersene);
     const std::string& word = buff[wordNum];
 
@@ -133,6 +173,14 @@ void learningByErrorsOneWord_mode(){
   assert(buff.size() > 0);
 
   while(true){
+    switch(code){
+      case EXITCODE_TS::ALL_GOOD:
+      case EXITCODE_TS::RERUN_THIS_MODE:
+        break;
+      case EXITCODE_TS::TO_MENU:
+          return;
+        break;
+    }
     const std::string bestWord = findBetterWord(personMaster.getWeights(), buff);
     const std::string& realyBest = bestWord;
     const std::string newText = constructTextFromWord(realyBest);
