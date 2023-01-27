@@ -14,6 +14,7 @@ extern const uint32_t symbolsAmount;
 #include "enumCodes.hxx"
 
 weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
+  clear();
   fprintf(logfile,"in typing sample\n");
   weighMaster result(symbolsAmount);
   WINDOW* subwindow = newwin(
