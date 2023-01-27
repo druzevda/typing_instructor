@@ -18,8 +18,8 @@ void randomLetters_mode();
 
 void menu(){
   int c;
+  int curItemNum=0;
   MENU *my_menu;
-  int curItem = 0;
 
   assert(menu_choices.size()==menu_descriptions.size());
 
@@ -40,22 +40,26 @@ void menu(){
 
   my_menu = new_menu((ITEM **)my_items);
   post_menu(my_menu);
-  refresh();
 
   while((c = getch()) != KEY_F(1))
-  {   switch(c)
-    {	case 'j':
+  {
+    switch(c) {
+      case KEY_DOWN:
+      case 'j':
+        --curItemNum;
         menu_driver(my_menu, REQ_DOWN_ITEM);
-        --curItem;
       break;
       case 'k':
+      case KEY_UP:
+        ++curItemNum;
         menu_driver(my_menu, REQ_UP_ITEM);
-        ++curItem;
       break;
       case 10:
         ITEM * cur_item = current_item(my_menu);
         void (*mode)() = (void(*)())item_userptr(cur_item);
         mode();
+        menu_driver(my_menu, REQ_UP_ITEM);
+        menu_driver(my_menu, REQ_DOWN_ITEM);
       break;
     }
   }
