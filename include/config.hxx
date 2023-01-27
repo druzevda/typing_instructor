@@ -30,14 +30,6 @@ const extern std::vector<std::string> texts{
     "the_house.txt",
     "the_pet_store.txt"
 };
-enum class KEYS{
-  CTRL_X = 24,
-  CTRL_N = 14,
-  CTRL_D = 4,
-  CTRL_J = 10,
-  CTRL_K = 11,
-};
-
 constexpr double X_SIZE_SUBWINDOW_MULT  = 3.0 / 5.0;
 constexpr double Y_SIZE_SUBWINDOW_MULT  = 3.0 / 5.0;
 constexpr double X_POINT_SUBWINDOW_MULT = 1.0 / 5.0;
@@ -89,7 +81,7 @@ const extern std::vector<std::string> menu_choices{
   "6 LETTERS "
 };
 
-constexpr extern uint32_t maxTextFromWordsSize = 100;
+constexpr extern uint32_t maxTextFromWordsSize = 300;
 constexpr extern uint32_t minWordSize_forOneWordText = 4;
 
 const extern std::vector<std::string> menu_descriptions{
