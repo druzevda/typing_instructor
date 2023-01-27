@@ -3,12 +3,14 @@
 enum class KEYS_TS{
   CTRL_X = 24,
   CTRL_N = 14,
+  CTRL_P = 16,
   CTRL_D = 4,
-  CTRL_J = 10,
+  CTRL_U = 21,
   CTRL_K = 11,
 };
-enum class EXITCODES_TS{
-  RERUN_THIS_MODE = 0,
-  TO_MENU =1,
+enum class EXITCODE_TS{
+  ALL_GOOD = 0,
+  RERUN_THIS_MODE = 1,
+  TO_MENU = 2,
 };
 #endif //  ENUM_CODES_HXX_INCLUDED____
