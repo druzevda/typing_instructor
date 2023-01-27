@@ -11,8 +11,9 @@ extern const int Y_POINT_SUBWINDOW;
 extern std::unordered_map<char,double> symbolsMap;
 extern const uint32_t symbolsAmount;
 
+#include "enumCodes.hxx"
 
-weighMaster typingSample(const std::string& text){
+weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
   fprintf(logfile,"in typing sample\n");
   weighMaster result(symbolsAmount);
   WINDOW* subwindow = newwin(
@@ -134,6 +135,22 @@ weighMaster typingSample(const std::string& text){
     if(allSum==0)
       begin = std::chrono::system_clock::now();
 
+    if(KEYS_TS(c) == KEYS_TS::CTRL_N ){
+      delwin(statwindow);
+      delwin(subwindow);
+      wclear(stdscr);
+
+      exitcode=EXITCODE_TS::RERUN_THIS_MODE;
+      return result;
+    }else if(KEYS_TS(c) == KEYS_TS::CTRL_U ){
+      delwin(statwindow);
+      delwin(subwindow);
+      wclear(stdscr);
+
+      exitcode=EXITCODE_TS::TO_MENU;
+      result.normalize();
+      return result;
+    }
     if(allSum > 0 && c == 127){ // delit
       if(allSum == goodSym)
         --goodSym;
@@ -181,5 +198,6 @@ weighMaster typingSample(const std::string& text){
   delwin(reswindow);
 
   fprintf(logfile,"return from typingsample()\n");
+  exitcode=EXITCODE_TS::ALL_GOOD;
   return result;
 }

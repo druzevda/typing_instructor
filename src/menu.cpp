@@ -40,10 +40,10 @@ void menu(){
 
   my_menu = new_menu((ITEM **)my_items);
   post_menu(my_menu);
-  refresh();
 
   while((c = getch()) != KEY_F(1))
-  {   switch(c)
+  {
+    switch(c)
     {	case 'j':
         menu_driver(my_menu, REQ_DOWN_ITEM);
         --curItem;
@@ -56,6 +56,9 @@ void menu(){
         ITEM * cur_item = current_item(my_menu);
         void (*mode)() = (void(*)())item_userptr(cur_item);
         mode();
+
+        menu_driver(my_menu, REQ_DOWN_ITEM);
+        --curItem;
       break;
     }
   }
