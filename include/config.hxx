@@ -56,6 +56,8 @@ void initAll(){
   cbreak();
   curs_set(0);
 
+  keypad(stdscr, TRUE);
+
   X_POINT_SUBWINDOW = X_POINT_SUBWINDOW_MULT * COLS ;
   Y_POINT_SUBWINDOW = Y_POINT_SUBWINDOW_MULT * LINES;
   X_SIZE_SUBWINDOW  = X_SIZE_SUBWINDOW_MULT  * COLS ;

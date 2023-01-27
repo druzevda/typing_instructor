@@ -5,6 +5,7 @@ enum class KEYS_TS{
   CTRL_N = 14,
   CTRL_P = 16,
   CTRL_D = 4,
+  ESC = 27,
   CTRL_U = 21,
   CTRL_K = 11,
 };
