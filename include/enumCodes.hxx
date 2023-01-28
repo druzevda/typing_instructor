@@ -8,6 +8,8 @@ enum class KEYS_TS{
   ESC = 27,
   CTRL_U = 21,
   CTRL_K = 11,
+  BACKSPACE_NORMAL = 127,
+  BACKSPACE_ARROWS = 7
 };
 enum class EXITCODE_TS{
   ALL_GOOD = 0,
