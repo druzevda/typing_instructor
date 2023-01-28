@@ -57,6 +57,7 @@ void menu(){
       case 10:
         ITEM * cur_item = current_item(my_menu);
         void (*mode)() = (void(*)())item_userptr(cur_item);
+        clear();
         mode();
         menu_driver(my_menu, REQ_UP_ITEM);
         menu_driver(my_menu, REQ_DOWN_ITEM);
