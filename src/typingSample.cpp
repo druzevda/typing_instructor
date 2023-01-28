@@ -133,17 +133,18 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
     printText();
 
     const char c = getch();
+    const KEYS_TS curKey = KEYS_TS(c);
     if(allSum==0)
       begin = std::chrono::system_clock::now();
 
-    if(KEYS_TS(c) == KEYS_TS::CTRL_N ){
+    if(curKey == KEYS_TS::CTRL_N ){
       delwin(statwindow);
       delwin(subwindow);
       wclear(stdscr);
 
       exitcode=EXITCODE_TS::RERUN_THIS_MODE;
       return result;
-    }else if(KEYS_TS(c) == KEYS_TS::CTRL_U ){
+    }else if(curKey == KEYS_TS::CTRL_U ){
       delwin(statwindow);
       delwin(subwindow);
       wclear(stdscr);
@@ -152,7 +153,7 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
       result.normalize();
       return result;
     }
-    if(allSum > 0 && c == 127){ // delit
+    if(allSum > 0 && (curKey==KEYS_TS::BACKSPACE_NORMAL || curKey==KEYS_TS::BACKSPACE_ARROWS)){ // delit
       if(allSum == goodSym)
         --goodSym;
       --allSum;
