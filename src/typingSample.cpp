@@ -102,6 +102,11 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
 
   printStat(statwindow,"PleaseStartTyping",0,0);
 
+  [](){
+    mvwprintw(stdscr,LINES-3,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+U - To menu");
+    mvwprintw(stdscr,LINES-2,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+N - Rerun");
+    mvwprintw(stdscr,LINES-1,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+C - exit");
+  }();
   const auto printText = [&subwindow,&text,&goodSym,&allSum,symbolsInText](){
     wclear(subwindow);
     wattron(subwindow,A_BOLD | COLOR_PAIR(2));
