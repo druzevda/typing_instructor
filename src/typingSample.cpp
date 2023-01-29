@@ -103,6 +103,7 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
   printStat(statwindow,"PleaseStartTyping",0,0);
 
   [](){
+    mvwprintw(stdscr,LINES-4,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+P - Skip symbol");
     mvwprintw(stdscr,LINES-3,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+U - To menu");
     mvwprintw(stdscr,LINES-2,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+N - Rerun");
     mvwprintw(stdscr,LINES-1,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+C - exit");
@@ -161,8 +162,8 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
       if(allSum == goodSym)
         --goodSym;
       --allSum;
-    }else if(allSum == goodSym){ // on point
-      if(c == text[goodSym]){// good symbol
+    }else if(allSum == goodSym ){ // on point
+      if(c == text[goodSym] || curKey == KEYS_TS::CTRL_P){// good symbol
         ++goodSym;
       }else{//first error
         const char prevChar = allSum==0 ? ' ' : text[allSum-1];
