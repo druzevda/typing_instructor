@@ -1,4 +1,5 @@
 #include "constructFunctions.hxx"
+
 #include "weighMaster.hxx"
 
 #include <random>
@@ -128,7 +129,7 @@ std::string constructTextFromWords(const std::vector<std::string>& buff){
 std::string constructTextFromWord(const std::string& word){
   std::fprintf(logfile,"in constructTextFromWord word=%s\n",word.c_str());
   std::string result{};
-  while(result.size() < maxTextFromWordsSize){
+  while(result.size() <= maxTextFromWordsSize){
     result += word;
     if(result.size()>= maxTextFromWordsSize){
       break;
