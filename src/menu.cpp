@@ -4,9 +4,8 @@
 #include <cassert>
 #include <string>
 #include <vector>
+#include "config.hxx"
 
-extern const std::vector<std::string> menu_choices;
-extern const std::vector<std::string> menu_descriptions;
 
 void learningByErrorsTextes_mode();
 void randomText_mode();

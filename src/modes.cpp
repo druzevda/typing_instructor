@@ -7,12 +7,8 @@
 #include <cassert>
 #include <random>
 
+#include "config.hxx"
 #include "enumCodes.hxx"
-extern FILE* logfile;
-extern const uint32_t symbolsAmount;
-extern const uint32_t lettersAmount;
-extern const std::vector<std::string> texts;
-extern const std::string wordsFile;
 
 void learningByErrorsTextes_mode(){
   fprintf(logfile,"in learning by errors TEXTES mode\n");
@@ -143,6 +139,16 @@ void randomWord_mode(){
   std::uniform_int_distribution<> unif(0,buff.size());
   assert(buff.size() > 0);
 
+  auto findGoodWord = [&mersene,&unif,&buff](){
+    while(true){
+      const int wordNum = unif(mersene);
+      const std::string& word = buff[wordNum];
+      if(isAcceptWord(word)){
+        return word;
+      }
+    }
+  };
+
   while(true){
     switch(code){
       case EXITCODE_TS::ALL_GOOD:
@@ -152,8 +158,7 @@ void randomWord_mode(){
           return;
         break;
     }
-    const int wordNum = unif(mersene);
-    const std::string& word = buff[wordNum];
+    const std::string& word = findGoodWord();
 
     const std::string newText = constructTextFromWord(word);
     const auto personMaster = typingSample(newText,code);
