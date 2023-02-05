@@ -1,5 +1,6 @@
 #include "constructFunctions.hxx"
 #include "weighMaster.hxx"
+#include "config.hxx"
 
 #include <random>
 #include <map>
@@ -7,19 +8,6 @@
 #include <fstream>
 #include <cctype>
 #include <unordered_map>
-
-extern FILE* logfile;
-
-extern const uint32_t symbolsAmount;
-extern const uint32_t lettersAmount;
-extern const uint32_t maxTextFromWordsSize;
-extern const uint32_t minWordSize_forOneWordText;
-
-extern std::unordered_map<char,double> symbolsMap;
-
-extern const std::string textsFolder;
-extern const std::string letters;
-extern const std::string symbols;
 
 int findBetterText(const std::vector<double>& userWeighs, const std::vector<std::string>& texts){
   std::fprintf(logfile,"in findBetterText\n");

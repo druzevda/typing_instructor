@@ -3,14 +3,7 @@
 #include <ncurses.h>
 #include <chrono>
 
-extern FILE* logfile;
-extern const int Y_SIZE_SUBWINDOW;
-extern const int X_SIZE_SUBWINDOW;
-extern const int X_POINT_SUBWINDOW;
-extern const int Y_POINT_SUBWINDOW;
-extern std::unordered_map<char,double> symbolsMap;
-extern const uint32_t symbolsAmount;
-
+#include "config.hxx"
 #include "enumCodes.hxx"
 
 weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){

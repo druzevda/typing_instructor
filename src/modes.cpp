@@ -7,12 +7,8 @@
 #include <cassert>
 #include <random>
 
+#include "config.hxx"
 #include "enumCodes.hxx"
-extern FILE* logfile;
-extern const uint32_t symbolsAmount;
-extern const uint32_t lettersAmount;
-extern const std::vector<std::string> texts;
-extern const std::string wordsFile;
 
 void learningByErrorsTextes_mode(){
   fprintf(logfile,"in learning by errors TEXTES mode\n");
