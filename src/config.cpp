@@ -89,9 +89,9 @@ const extern std::vector<std::string> menu_descriptions{
   "( Focus on your weak points )",
   "( Random choice )",
   "( Focus on your weak points, " + std::to_string(maxTextFromWordsSize) + "+ symbols )",
-  "( Random choice, " + std::to_string(maxTextFromWordsSize) + "+ symbols )",
+  "( Random choice, " + std::to_string(maxTextFromWordsSize) + "+ symbols, words in ["+std::to_string(minWordSize_forOneWordText)+";"+std::to_string(maxWordSize_forOneWordText)+"] )",
   "( Focus on your weak points, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
-  "( Random choice, "+ std::to_string(maxTextFromWordsSize) +  "+ symbols )",
+  "( Random choice, " + std::to_string(maxTextFromWordsSize) + "+ symbols, words in ["+std::to_string(minWordSize_forOneWordText)+";"+std::to_string(maxWordSize_forOneWordText)+"] )",
   "( Random choice, "+ std::to_string(maxTextFromWordsSize) +  " symbols )"
 };
 
