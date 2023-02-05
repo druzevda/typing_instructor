@@ -97,12 +97,22 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
 std::string constructTextFromWords(const std::vector<std::string>& buff){
 
   std::fprintf(logfile,"in constructTextFromWords\n");
-  std::mt19937 mersenne(std::random_device{}());
+  std::mt19937 mersene(std::random_device{}());
   std::uniform_int_distribution<> unif(0,buff.size());
   std::string result{};
+
+  auto findGoodWord = [&mersene,&unif,&buff](){
+    while(true){
+      const int wordNum = unif(mersene);
+      const std::string& word = buff[wordNum];
+      if(isAcceptWord(word)){
+        return word;
+      }
+    }
+  };
+
   while(result.size() < maxTextFromWordsSize){
-    const auto randomWordNum = unif(mersenne);
-    const auto& word = buff[randomWordNum];
+    const auto word = findGoodWord();
     result += word;
     if(result.size()>= maxTextFromWordsSize){
       break;
