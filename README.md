@@ -3,6 +3,7 @@
 # Versions list:
 - 0.4 version(only avalable in develop branch)
     - more keys
+    - min max wordsize
     - exit logic
     - key info
     - arrows
