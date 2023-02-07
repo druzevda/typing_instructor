@@ -112,7 +112,7 @@ std::string constructTextFromWords(const std::vector<std::string>& buff){
     }
   };
 
-  while(result.size() < maxTextFromWordsSize){
+  while(result.size() <= maxTextFromWordsSize){
     const auto word = findGoodWord();
     result += word;
     if(result.size()>= maxTextFromWordsSize){
