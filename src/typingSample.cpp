@@ -42,6 +42,7 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
 
   int goodSym = 0;
   int allSum = 0;
+  int errorsAmount = 0;
 
   if(has_colors()==FALSE){
     fprintf(logfile,"dosnt has_colors()  exit()\n");
@@ -170,6 +171,7 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
         const char prevIndex = symbolsMap[prevChar];
         const char nowIndex = symbolsMap[nowChar];
         personMaster.makeSample(prevIndex,nowIndex);
+        ++errorsAmount;
       }
       ++allSum;
     }else if (allSum >= symbolsInText){
@@ -177,12 +179,11 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
       ++allSum;
     }
 
-    printStat(statwindow,"RealTimeStat",personMaster.getSamplesAmount(),goodSym);
+    printStat(statwindow,"RealTimeStat",errorsAmount,goodSym);
     //wrefresh(subwindow);
   }
   fprintf(logfile,"finish texts\n");
   fflush(logfile);
-  personMaster.normalize();
 
   delwin(statwindow);
   delwin(subwindow);
@@ -200,7 +201,7 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
 
   init_pair(3,COLOR_BLACK,COLOR_WHITE);
   wbkgd(reswindow,COLOR_PAIR(3));
-  printStat(reswindow,"LastFinishStat",personMaster.getSamplesAmount(),goodSym);
+  printStat(reswindow,"LastFinishStat",errorsAmount,goodSym);
   delwin(reswindow);
 
   fprintf(logfile,"return from typingsample()\n");
