@@ -25,7 +25,7 @@ std::vector<double> weighMaster::getNormalizedWeights()const{
 
 void weighMaster::randomize(){
   std::mt19937 mersenne(std::random_device{}());
-  std::binomial_distribution<> d(1, 1./lettersAmount);
+  std::binomial_distribution<> d(1, double(errorsInInitMaster)/(lettersAmount*lettersAmount));
   this->clear();
   for(auto& elem : weights){
     if(d(mersenne)){

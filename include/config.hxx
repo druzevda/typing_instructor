@@ -8,6 +8,7 @@
 
 extern const uint32_t maxTextFromWordsSize;
 extern const uint32_t minWordSize_forOneWordText;
+extern const uint32_t errorsInInitMaster;
 
 extern const std::string textsFolder;
 extern const std::string wordsFile;

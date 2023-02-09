@@ -80,6 +80,8 @@ constexpr extern uint32_t maxTextFromWordsSize = 100;
 constexpr extern uint32_t minWordSize_forOneWordText = 4;
 constexpr extern uint32_t maxWordSize_forOneWordText = 5;
 
+constexpr extern uint32_t errorsInInitMaster = 5;
+
 bool isAcceptWord(const std::string& word){
   const auto size = word.size();
   return (size>=minWordSize_forOneWordText)&&(size<=maxWordSize_forOneWordText);
