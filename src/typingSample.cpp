@@ -6,9 +6,9 @@
 #include "config.hxx"
 #include "enumCodes.hxx"
 
-weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
+void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& personMaster){
   fprintf(logfile,"in typing sample\n");
-  weighMaster result(symbolsAmount);
+  fflush(logfile);
   WINDOW* subwindow = newwin(
       Y_SIZE_SUBWINDOW,
       X_SIZE_SUBWINDOW,
@@ -17,6 +17,7 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
   );
   if(subwindow == nullptr){
     fprintf(logfile,"dosnt open subwindow exit()\n");
+    fflush(logfile);
     delwin(subwindow);
     endwin();
     exit(100);
@@ -31,6 +32,7 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
 
   if(statwindow == nullptr){
     fprintf(logfile,"dosnt open statwindow exit()\n");
+    fflush(logfile);
     delwin(subwindow);
     delwin(statwindow);
     delwin(subwindow);
@@ -43,6 +45,7 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
 
   if(has_colors()==FALSE){
     fprintf(logfile,"dosnt has_colors()  exit()\n");
+    fflush(logfile);
     delwin(subwindow);
     endwin();
     exit(100);
@@ -136,20 +139,23 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
       begin = std::chrono::system_clock::now();
 
     if(curKey == KEYS_TS::CTRL_N ){
+      fprintf(logfile,"CTRL_N, go to the next text\n");
+      fflush(logfile);
       delwin(statwindow);
       delwin(subwindow);
       wclear(stdscr);
 
       exitcode=EXITCODE_TS::RERUN_THIS_MODE;
-      return result;
+      return;
     }else if(curKey == KEYS_TS::CTRL_U ){
+      fprintf(logfile,"CTRL_U, go to menu\n");
+      fflush(logfile);
       delwin(statwindow);
       delwin(subwindow);
       wclear(stdscr);
 
       exitcode=EXITCODE_TS::TO_MENU;
-      result.normalize();
-      return result;
+      return;
     }
     if(allSum > 0 && (curKey==KEYS_TS::BACKSPACE_NORMAL || curKey==KEYS_TS::BACKSPACE_ARROWS)){ // delit
       if(allSum == goodSym)
@@ -163,7 +169,7 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
         const char nowChar = text[allSum];
         const char prevIndex = symbolsMap[prevChar];
         const char nowIndex = symbolsMap[nowChar];
-        result.makeSample(prevIndex,nowIndex);
+        personMaster.makeSample(prevIndex,nowIndex);
       }
       ++allSum;
     }else if (allSum >= symbolsInText){
@@ -171,11 +177,12 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
       ++allSum;
     }
 
-    printStat(statwindow,"RealTimeStat",result.getSamplesAmount(),goodSym);
+    printStat(statwindow,"RealTimeStat",personMaster.getSamplesAmount(),goodSym);
     //wrefresh(subwindow);
   }
   fprintf(logfile,"finish texts\n");
-  result.normalize();
+  fflush(logfile);
+  personMaster.normalize();
 
   delwin(statwindow);
   delwin(subwindow);
@@ -188,16 +195,14 @@ weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode){
   );
   if(reswindow == nullptr){
     fprintf(logfile,"dosnt open reswindow exit()\n");
-    endwin();
-    exit(100);
+    endwin(); exit(100);
   }
 
   init_pair(3,COLOR_BLACK,COLOR_WHITE);
   wbkgd(reswindow,COLOR_PAIR(3));
-  printStat(reswindow,"LastFinishStat",result.getSamplesAmount(),goodSym);
+  printStat(reswindow,"LastFinishStat",personMaster.getSamplesAmount(),goodSym);
   delwin(reswindow);
 
   fprintf(logfile,"return from typingsample()\n");
   exitcode=EXITCODE_TS::ALL_GOOD;
-  return result;
 }

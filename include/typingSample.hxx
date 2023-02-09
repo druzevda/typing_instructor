@@ -5,6 +5,6 @@
 #include <string>
 #include "enumCodes.hxx"
 
-weighMaster typingSample(const std::string& text, EXITCODE_TS& exitcode);
+void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& personMaster);
 
 #endif // TYPING_SAMPLE_HXX_INCLUDED___

@@ -14,7 +14,7 @@ void learningByErrorsTextes_mode(weighMaster& personMaster){
   fprintf(logfile,"in learning by errors TEXTES mode\n");
 
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
-  personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.",code);
+  typingSample("English texts for beginners to practice reading and comprehension online and for free.",code,personMaster);
 
   while(true){
     switch(code){
@@ -27,10 +27,9 @@ void learningByErrorsTextes_mode(weighMaster& personMaster){
     }
     const int betterText = findBetterText(personMaster.getWeights(),texts);
     const std::string newText = scanTextToString(texts[betterText]);
-
     fprintf(logfile,"better texts is [%d] [%s] \n",betterText,newText.c_str());
 
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
   fprintf(logfile,"end learning by errors Textes mode\n");
@@ -40,7 +39,7 @@ void learningByErrorsWords_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in learning by errors WORDS mode\n");
 
-  personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.",code);
+  typingSample("English texts for beginners to practice reading and comprehension online and for free.",code,personMaster);
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   while(true){
     switch(code){
@@ -52,7 +51,7 @@ void learningByErrorsWords_mode(weighMaster& personMaster){
         break;
     }
     const std::string newText = constructBetterWords(personMaster.getWeights(), buff);
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
   fprintf(logfile,"end learning by errors WORDS mode\n");
@@ -75,7 +74,7 @@ void randomWords_mode(weighMaster& personMaster){
         break;
     }
     const std::string newText = constructTextFromWords(buff);
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
   fprintf(logfile,"end random WORD mode\n");
@@ -101,7 +100,7 @@ void randomText_mode(weighMaster& personMaster){
 
     fprintf(logfile,"random texts is [%d] [%s] \n",randomText,newText.c_str());
 
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
   fprintf(logfile,"end learning by errors Textes mode\n");
@@ -122,7 +121,7 @@ void randomLetters_mode(weighMaster& personMaster){
     const std::string newText = constructRandomLettersText();
     std::fprintf(logfile,"text->%s<-\n",newText.c_str());
     fflush(logfile);
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
   fprintf(logfile,"end random LETTERS mode\n");
@@ -158,7 +157,7 @@ void randomWord_mode(weighMaster& personMaster){
     const std::string& word = findGoodWord();
 
     const std::string newText = constructTextFromWord(word);
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
   fprintf(logfile,"end random WORD mode\n");
@@ -168,7 +167,7 @@ void learningByErrorsOneWord_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in learnign by errors WORD mode");
 
-  personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.",code);
+  typingSample("English texts for beginners to practice reading and comprehension online and for free.",code,personMaster);
 
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   assert(buff.size() > 0);
@@ -185,7 +184,7 @@ void learningByErrorsOneWord_mode(weighMaster& personMaster){
     const std::string bestWord = findBetterWord(personMaster.getWeights(), buff);
     const std::string& realyBest = bestWord;
     const std::string newText = constructTextFromWord(realyBest);
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
   fprintf(logfile,"end learnign by errors WORD mode");
