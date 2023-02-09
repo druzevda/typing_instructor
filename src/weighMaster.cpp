@@ -15,6 +15,13 @@ void weighMaster::makeSample(const char firstLetter, const char secondLetter){
   ++samplesAmount;
 }
 
+std::vector<double> weighMaster::getNormalizedWeights()const{
+  weighMaster resMaster = *(this);
+  resMaster.normalize();
+  const auto res = std::move(resMaster.weights);
+  return res;
+}
+
 void weighMaster::normalize(){
   const uint32_t normCoeff = (this->getSamplesAmount()==0?1:this->getSamplesAmount());
   if(normCoeff == 1)

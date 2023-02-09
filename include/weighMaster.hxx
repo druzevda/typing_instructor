@@ -21,6 +21,8 @@ class weighMaster{
     return weights;
   }
 
+  std::vector<double> getNormalizedWeights()const;
+
   void clear();
 
   uint32_t getSamplesAmount()const{
@@ -30,5 +32,15 @@ class weighMaster{
   int getWidth()const{
     return width;
   }
+
+  weighMaster() = delete;
+  ~weighMaster() = default;
+
+  weighMaster(const weighMaster& other)=default;
+  weighMaster(weighMaster&& other)=default;
+
+  weighMaster& operator=(const weighMaster& other)=default;
+  weighMaster& operator=(weighMaster&& other)=default;
+
 };
 #endif //  WEIGHT_MASTER_INCLUDED_HXX
