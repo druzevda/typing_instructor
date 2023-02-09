@@ -38,7 +38,7 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
       }
     }
     double weightForThisText = 0.0;
-    const auto weightsForThisText = weights.getNormalizedWeights();
+    const auto weightsForThisText = weights.getWeights();
     for(uint32_t i = 0; i < userWeighs.size(); ++i){
       weightForThisText+=userWeighs[i]*weightsForThisText[i];
     }
@@ -70,7 +70,7 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
       prevIndex = curIndex;
     }
     double weightForThisText = 0.0;
-    const auto weightsForThisText = weights.getNormalizedWeights();
+    const auto weightsForThisText = weights.getWeights();
     for(uint32_t i = 0; i < userWeighs.size(); ++i){
       weightForThisText+=userWeighs[i]*weightsForThisText[i];
     }
@@ -153,7 +153,8 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
       prevIndex = curIndex;
     }
     double weightForThisText = 0.0;
-    const auto weightsForThisText = weights.getNormalizedWeights();
+    const auto weightsForThisText = weights.getWeights();
+    //const auto weightsForThisText = weights.getNormalizedWeights();
     for(uint32_t i = 0; i < userWeighs.size(); ++i){
       weightForThisText+=userWeighs[i]*weightsForThisText[i];
     }
