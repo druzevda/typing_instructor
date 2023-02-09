@@ -14,8 +14,6 @@ void learningByErrorsTextes_mode(weighMaster& personMaster){
   fprintf(logfile,"in learning by errors TEXTES mode\n");
 
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
-  typingSample("English texts for beginners to practice reading and comprehension online and for free.",code,personMaster);
-
   while(true){
     switch(code){
       case EXITCODE_TS::ALL_GOOD:
@@ -39,7 +37,6 @@ void learningByErrorsWords_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in learning by errors WORDS mode\n");
 
-  typingSample("English texts for beginners to practice reading and comprehension online and for free.",code,personMaster);
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   while(true){
     switch(code){
@@ -166,8 +163,6 @@ void randomWord_mode(weighMaster& personMaster){
 void learningByErrorsOneWord_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in learnign by errors WORD mode");
-
-  typingSample("English texts for beginners to practice reading and comprehension online and for free.",code,personMaster);
 
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   assert(buff.size() > 0);
