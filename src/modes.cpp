@@ -25,7 +25,7 @@ void learningByErrorsTextes_mode(weighMaster& personMaster){
           return;
         break;
     }
-    const int betterText = findBetterText(personMaster.getWeights(),texts);
+    const int betterText = findBetterText(personMaster.getNormalizedWeights(),texts);
     const std::string newText = scanTextToString(texts[betterText]);
     fprintf(logfile,"better texts is [%d] [%s] \n",betterText,newText.c_str());
 
@@ -50,7 +50,7 @@ void learningByErrorsWords_mode(weighMaster& personMaster){
           return;
         break;
     }
-    const std::string newText = constructBetterWords(personMaster.getWeights(), buff);
+    const std::string newText = constructBetterWords(personMaster.getNormalizedWeights(), buff);
     typingSample(newText,code,personMaster);
   }
 
@@ -181,7 +181,7 @@ void learningByErrorsOneWord_mode(weighMaster& personMaster){
           return;
         break;
     }
-    const std::string bestWord = findBetterWord(personMaster.getWeights(), buff);
+    const std::string bestWord = findBetterWord(personMaster.getNormalizedWeights(), buff);
     const std::string& realyBest = bestWord;
     const std::string newText = constructTextFromWord(realyBest);
     typingSample(newText,code,personMaster);
