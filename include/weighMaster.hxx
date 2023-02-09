@@ -16,6 +16,7 @@ class weighMaster{
   void makeSample(const char firstLetter, const char secondLetter);
 
   void normalize();
+  void randomize();
 
   const std::vector<double>& getWeights()const{
     return weights;

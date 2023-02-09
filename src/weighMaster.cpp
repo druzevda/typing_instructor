@@ -1,5 +1,6 @@
 #include "weighMaster.hxx"
-
+#include <random>
+#include "config.hxx"
 
 weighMaster::weighMaster(const int width_)
   :width(width_)
@@ -22,6 +23,17 @@ std::vector<double> weighMaster::getNormalizedWeights()const{
   return res;
 }
 
+void weighMaster::randomize(){
+  std::mt19937 mersenne(std::random_device{}());
+  std::binomial_distribution<> d(1, 1./lettersAmount);
+  this->clear();
+  for(auto& elem : weights){
+    if(d(mersenne)){
+      ++elem;
+      ++samplesAmount;
+    }
+  }
+}
 void weighMaster::normalize(){
   const uint32_t normCoeff = (this->getSamplesAmount()==0?1:this->getSamplesAmount());
   if(normCoeff == 1)
