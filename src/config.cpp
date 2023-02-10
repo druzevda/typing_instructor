@@ -6,7 +6,7 @@ const extern uint32_t symbolsAmount = symbols.size();
 const extern std::string letters{" abcdefghijklmnopqrstuvwxyz"};
 const extern uint32_t lettersAmount = letters.size();
 
-std::unordered_map<char,double> symbolsMap{ };
+std::unordered_map<char,int> symbolsMap{ };
 
 const extern std::vector<std::string> texts{
   "a_great_summer_vacation.txt",
@@ -62,7 +62,7 @@ void initAll(){
     endwin();
     exit(1);
   }else{
-    std::fprintf(logfile,"START TYPING INSTRUCTOR");
+    std::fprintf(logfile,"START TYPING INSTRUCTOR\n");
   }
 }
 
