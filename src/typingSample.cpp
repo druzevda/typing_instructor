@@ -166,10 +166,11 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
       if(c == text[goodSym] || curKey == KEYS_TS::CTRL_P){// good symbol
         ++goodSym;
       }else{//first error
-        const char prevChar = allSum==0 ? ' ' : text[allSum-1];
-        const char nowChar = text[allSum];
-        const char prevIndex = symbolsMap[prevChar];
-        const char nowIndex = symbolsMap[nowChar];
+        const char prevChar = allSum==0 ? ' ' : std::tolower(text[allSum-1]);
+        const char nowChar = std::tolower(text[allSum]);
+
+        const int prevIndex = symbolsMap[prevChar];
+        const int nowIndex = symbolsMap[nowChar];
         personMaster.makeSample(prevIndex,nowIndex);
         ++errorsAmount;
       }

@@ -29,7 +29,7 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
       const int len = strlen(buff);
       char prevIndex = 0;// SPACE index
       for(int symbolCount = 0; symbolCount < len; ++symbolCount){
-          const char& curSymbol = std::tolower(buff[symbolCount]);
+          const char curSymbol = std::tolower(buff[symbolCount]);
           const int curIndex = symbolsMap[curSymbol];
 
           weights.makeSample(prevIndex,curIndex);
@@ -62,7 +62,7 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
     const uint32_t curWordSize = curWord.size();
     char prevIndex = 0;// SPACE index
     for(uint32_t symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
-      const char& curSymbol = std::tolower(curWord[symbolCount]);
+      const char curSymbol = std::tolower(curWord[symbolCount]);
       const int curIndex = symbolsMap[curSymbol];
 
       weights.makeSample(prevIndex,curIndex);
@@ -145,7 +145,7 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
     const uint32_t curWordSize = curWord.size();
     char prevIndex = 0; // SPACE index
     for(uint32_t symbolCount = 0; symbolCount < curWordSize; ++symbolCount){
-      const char& curSymbol = std::tolower(curWord[symbolCount]);
+      const char curSymbol = std::tolower(curWord[symbolCount]);
       const int curIndex = symbolsMap[curSymbol];
 
       weights.makeSample(prevIndex,curIndex);
