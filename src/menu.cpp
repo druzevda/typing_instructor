@@ -36,7 +36,7 @@ void menu(){
   int c;
   int curItemNum=0;
 
-  weighMaster personMaster(lettersAmount);
+  weighMaster personMaster(symbolsAmount);
   personMaster.randomize();
 
   while((c = getch()) != KEY_F(1))
