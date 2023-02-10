@@ -11,6 +11,7 @@ class weighMaster{
   int width = 0;
 
   public:
+  void print()const;
   weighMaster(const int width_);
 
   void makeSample(const int firstLetter, const int secondLetter);
