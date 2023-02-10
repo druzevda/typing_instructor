@@ -62,7 +62,7 @@ void initAll(){
     endwin();
     exit(1);
   }else{
-    std::fprintf(logfile,"START TYPING INSTRUCTOR\n");
+    std::fprintf(logfile,"START TYPING INSTRUCTOR\n\n");
   }
 }
 

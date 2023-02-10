@@ -30,7 +30,7 @@ void learningByErrorsTextes_mode(weighMaster& personMaster){
     typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end learning by errors Textes mode\n");
+  fprintf(logfile,"end learning by errors Textes mode\n\n");
 }
 
 void learningByErrorsWords_mode(weighMaster& personMaster){
@@ -51,7 +51,7 @@ void learningByErrorsWords_mode(weighMaster& personMaster){
     typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end learning by errors WORDS mode\n");
+  fprintf(logfile,"end learning by errors WORDS mode\n\n");
 }
 
 void randomWords_mode(weighMaster& personMaster){
@@ -74,7 +74,7 @@ void randomWords_mode(weighMaster& personMaster){
     typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end random WORD mode\n");
+  fprintf(logfile,"end random WORD mode\n\n");
 }
 void randomText_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
@@ -100,7 +100,7 @@ void randomText_mode(weighMaster& personMaster){
     typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end learning by errors Textes mode\n");
+  fprintf(logfile,"end learning by errors Textes mode\n\n");
 }
 void randomLetters_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
@@ -121,7 +121,7 @@ void randomLetters_mode(weighMaster& personMaster){
     typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end random LETTERS mode\n");
+  fprintf(logfile,"end random LETTERS mode\n\n");
 }
 void randomWord_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
@@ -157,7 +157,7 @@ void randomWord_mode(weighMaster& personMaster){
     typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end random WORD mode\n");
+  fprintf(logfile,"end random WORD mode\n\n");
 }
 
 void learningByErrorsOneWord_mode(weighMaster& personMaster){
@@ -182,5 +182,5 @@ void learningByErrorsOneWord_mode(weighMaster& personMaster){
     typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end learnign by errors WORD mode");
+  fprintf(logfile,"end learnign by errors WORD mode\n\n");
 }

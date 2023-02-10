@@ -8,6 +8,7 @@
 
 void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& personMaster){
   fprintf(logfile,"in typing sample\n");
+  personMaster.print();
   fflush(logfile);
   WINDOW* subwindow = newwin(
       Y_SIZE_SUBWINDOW,
@@ -173,6 +174,7 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
         const int nowIndex = symbolsMap[nowChar];
         personMaster.makeSample(prevIndex,nowIndex);
         ++errorsAmount;
+        std::fprintf(logfile,"errNum:[%d],sample:[%d],symb:[%c][%c],idx[%d][%d]\n",errorsAmount,personMaster.getSamplesAmount(),prevChar,nowChar,prevIndex,nowIndex);
       }
       ++allSum;
     }else if (allSum >= symbolsInText){

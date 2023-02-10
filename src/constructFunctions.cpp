@@ -44,7 +44,7 @@ int findBetterText(const std::vector<double>& userWeighs, const std::vector<std:
     }
 
     weights.clear();
-    std::fprintf(logfile,"->%s<- weigh = %lf\n",fullPathToText.c_str(),weightForThisText);
+    std::fprintf(logfile,"\t->%s<- weigh = %lf\n",fullPathToText.c_str(),weightForThisText);
     if(weightForThisText > bestValue){
       bestText = textCount;
       bestValue = weightForThisText;
@@ -89,6 +89,7 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
       break;
     }
   }
+  std::fprintf(logfile,"\n");
   fflush(logfile);
   return result;
 }
@@ -119,6 +120,7 @@ std::string constructTextFromWords(const std::vector<std::string>& buff){
       result+= " ";
     }
   }
+  std::fprintf(logfile,"\n");
   fflush(logfile);
   return result;
 }
@@ -133,6 +135,7 @@ std::string constructTextFromWord(const std::string& word){
       result+= " ";
     }
   }
+  std::fprintf(logfile,"\n");
   fflush(logfile);
   return result;
 }
@@ -165,7 +168,7 @@ std::string findBetterWord(const std::vector<double>& userWeighs, const std::vec
   for(const auto& [currWordWeigh,currWordPlace] : wordsMap){
     const std::string& currWord = words[currWordPlace];
     if(currWord.size() >= minWordSize_forOneWordText){
-      std::fprintf(logfile,"best word =%s weigh=%lf\n",currWord.c_str(),currWordWeigh);
+      std::fprintf(logfile,"best word =%s weigh=%lf\n\n",currWord.c_str(),currWordWeigh);
       fflush(logfile);
       return currWord;
     }
@@ -190,6 +193,7 @@ std::string constructRandomLettersText(){
     result.push_back(randomLetter);
   }
 
+  std::fprintf(logfile,"\n");
   fflush(logfile);
   return result;
 }
