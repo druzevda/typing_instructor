@@ -11,7 +11,7 @@ weighMaster::weighMaster(const int width_)
 
   //weight = std::vector<double>(width*width*width);
 }
-void weighMaster::makeSample(const char firstLetter, const char secondLetter){
+void weighMaster::makeSample(const int firstLetter, const int secondLetter){
   ++weights[width*firstLetter + secondLetter];
   ++samplesAmount;
 }

@@ -13,7 +13,7 @@ class weighMaster{
   public:
   weighMaster(const int width_);
 
-  void makeSample(const char firstLetter, const char secondLetter);
+  void makeSample(const int firstLetter, const int secondLetter);
 
   void normalize();
   void randomize();
