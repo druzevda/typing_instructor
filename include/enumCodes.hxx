@@ -15,5 +15,6 @@ enum class EXITCODE_TS{
   ALL_GOOD = 0,
   RERUN_THIS_MODE = 1,
   TO_MENU = 2,
+  ALL_GOOD_WITHOUT_ERRORS = 3,
 };
 #endif //  ENUM_CODES_HXX_INCLUDED____

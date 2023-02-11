@@ -8,6 +8,7 @@
 
 extern const uint32_t maxTextFromWordsSize;
 extern const uint32_t minWordSize_forOneWordText;
+extern const uint32_t errorsInInitMaster;
 
 extern const std::string textsFolder;
 extern const std::string wordsFile;
@@ -16,7 +17,8 @@ extern const std::string letters;
 extern const uint32_t lettersAmount;
 extern const std::string symbols;
 extern const uint32_t symbolsAmount;
-extern std::unordered_map<char,double> symbolsMap;
+
+extern std::unordered_map<char,int> symbolsMap;
 
 extern const std::vector<std::string> menu_choices;
 extern const std::vector<std::string> menu_descriptions;

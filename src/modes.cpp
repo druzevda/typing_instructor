@@ -10,16 +10,14 @@
 #include "config.hxx"
 #include "enumCodes.hxx"
 
-void learningByErrorsTextes_mode(){
+void learningByErrorsTextes_mode(weighMaster& personMaster){
   fprintf(logfile,"in learning by errors TEXTES mode\n");
 
-  weighMaster personMaster(symbolsAmount);
-
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
-  personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.",code);
-
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
+        personMaster.randomize();
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -27,26 +25,25 @@ void learningByErrorsTextes_mode(){
           return;
         break;
     }
-    const int betterText = findBetterText(personMaster.getWeights(),texts);
+    const int betterText = findBetterText(personMaster.getNormalizedWeights(),texts);
     const std::string newText = scanTextToString(texts[betterText]);
-
     fprintf(logfile,"better texts is [%d] [%s] \n",betterText,newText.c_str());
 
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end learning by errors Textes mode\n");
+  fprintf(logfile,"end learning by errors Textes mode\n\n");
 }
 
-void learningByErrorsWords_mode(){
+void learningByErrorsWords_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in learning by errors WORDS mode\n");
 
-  weighMaster personMaster(symbolsAmount);
-  personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.",code);
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
+        personMaster.randomize();
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -54,14 +51,14 @@ void learningByErrorsWords_mode(){
           return;
         break;
     }
-    const std::string newText = constructBetterWords(personMaster.getWeights(), buff);
-    personMaster = typingSample(newText,code);
+    const std::string newText = constructBetterWords(personMaster.getNormalizedWeights(), buff);
+    typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end learning by errors WORDS mode\n");
+  fprintf(logfile,"end learning by errors WORDS mode\n\n");
 }
 
-void randomWords_mode(){
+void randomWords_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in random WORDS mode\n");
 
@@ -70,6 +67,7 @@ void randomWords_mode(){
 
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -78,12 +76,12 @@ void randomWords_mode(){
         break;
     }
     const std::string newText = constructTextFromWords(buff);
-    const auto personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end random WORD mode\n");
+  fprintf(logfile,"end random WORD mode\n\n");
 }
-void randomText_mode(){
+void randomText_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in random TEXTES mode\n");
 
@@ -92,6 +90,7 @@ void randomText_mode(){
 
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -104,17 +103,18 @@ void randomText_mode(){
 
     fprintf(logfile,"random texts is [%d] [%s] \n",randomText,newText.c_str());
 
-    const auto personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end learning by errors Textes mode\n");
+  fprintf(logfile,"end learning by errors Textes mode\n\n");
 }
-void randomLetters_mode(){
+void randomLetters_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in random LETTERS mode\n");
 
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -125,12 +125,12 @@ void randomLetters_mode(){
     const std::string newText = constructRandomLettersText();
     std::fprintf(logfile,"text->%s<-\n",newText.c_str());
     fflush(logfile);
-    const auto personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end random LETTERS mode\n");
+  fprintf(logfile,"end random LETTERS mode\n\n");
 }
-void randomWord_mode(){
+void randomWord_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in random WORD mode\n");
 
@@ -151,6 +151,7 @@ void randomWord_mode(){
 
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -161,24 +162,23 @@ void randomWord_mode(){
     const std::string& word = findGoodWord();
 
     const std::string newText = constructTextFromWord(word);
-    const auto personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end random WORD mode\n");
+  fprintf(logfile,"end random WORD mode\n\n");
 }
 
-void learningByErrorsOneWord_mode(){
+void learningByErrorsOneWord_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   fprintf(logfile,"in learnign by errors WORD mode");
-
-  weighMaster personMaster(symbolsAmount);
-  personMaster = typingSample("English texts for beginners to practice reading and comprehension online and for free.",code);
 
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   assert(buff.size() > 0);
 
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
+        personMaster.randomize();
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -186,11 +186,11 @@ void learningByErrorsOneWord_mode(){
           return;
         break;
     }
-    const std::string bestWord = findBetterWord(personMaster.getWeights(), buff);
+    const std::string bestWord = findBetterWord(personMaster.getNormalizedWeights(), buff);
     const std::string& realyBest = bestWord;
     const std::string newText = constructTextFromWord(realyBest);
-    personMaster = typingSample(newText,code);
+    typingSample(newText,code,personMaster);
   }
 
-  fprintf(logfile,"end learnign by errors WORD mode");
+  fprintf(logfile,"end learnign by errors WORD mode\n\n");
 }

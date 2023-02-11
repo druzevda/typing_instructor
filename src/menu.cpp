@@ -5,15 +5,9 @@
 #include <string>
 #include <vector>
 #include "config.hxx"
+#include "weighMaster.hxx"
 
-void learningByErrorsTextes_mode();
-void randomText_mode();
-void learningByErrorsWords_mode();
-void randomWords_mode();
-void learningByErrorsOneWord_mode();
-void randomWord_mode();
-void randomLetters_mode();
-
+#include "modes.hxx"
 void menu(){
 
   assert(menu_choices.size()==menu_descriptions.size());
@@ -42,13 +36,16 @@ void menu(){
   int c;
   int curItemNum=0;
 
+  weighMaster personMaster(symbolsAmount);
+  personMaster.randomize();
+
   while((c = getch()) != KEY_F(1))
   {
     const int64_t realNumKey = c-'0';
     if(realNumKey >= minMenuItemNum && realNumKey < maxMenuItemNum){
-      void (*mode)() = (void(*)())item_userptr(my_items[realNumKey]);
+      void (*mode)(weighMaster&) = (void(*)(weighMaster&))item_userptr(my_items[realNumKey]);
       clear();
-      mode();
+      mode(personMaster);
       menu_driver(my_menu, REQ_UP_ITEM);
       menu_driver(my_menu, REQ_DOWN_ITEM);
     }
@@ -67,9 +64,9 @@ void menu(){
 
       case 10:
         ITEM * cur_item = current_item(my_menu);
-        void (*mode)() = (void(*)())item_userptr(cur_item);
+        void (*mode)(weighMaster&) = (void(*)(weighMaster&))item_userptr(cur_item);
         clear();
-        mode();
+        mode(personMaster);
         menu_driver(my_menu, REQ_UP_ITEM);
         menu_driver(my_menu, REQ_DOWN_ITEM);
       break;
