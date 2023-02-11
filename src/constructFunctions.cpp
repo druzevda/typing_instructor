@@ -88,6 +88,7 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
       }else{
         result+= " ";
       }
+    }
   }
   std::fprintf(logfile,"\n");
   fflush(logfile);
