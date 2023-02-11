@@ -16,6 +16,8 @@ void learningByErrorsTextes_mode(weighMaster& personMaster){
   EXITCODE_TS code = EXITCODE_TS::ALL_GOOD;
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
+        personMaster.randomize();
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -40,6 +42,8 @@ void learningByErrorsWords_mode(weighMaster& personMaster){
   const std::vector<std::string> buff = scanWordsToString(wordsFile);
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
+        personMaster.randomize();
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -169,6 +173,8 @@ void learningByErrorsOneWord_mode(weighMaster& personMaster){
 
   while(true){
     switch(code){
+      case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
+        personMaster.randomize();
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;

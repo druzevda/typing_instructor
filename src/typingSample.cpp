@@ -207,6 +207,11 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
   printStat(reswindow,"LastFinishStat",errorsAmount,goodSym);
   delwin(reswindow);
 
-  fprintf(logfile,"return from typingsample()\n");
-  exitcode=EXITCODE_TS::ALL_GOOD;
+  if(errorsAmount == 0){
+    exitcode=EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS;
+    fprintf(logfile,"return from typingsample() without errors!!!!!!!!\n");
+  }else{
+    exitcode=EXITCODE_TS::ALL_GOOD;
+    fprintf(logfile,"return from typingsample()\n");
+  }
 }
