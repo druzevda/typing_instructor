@@ -18,6 +18,7 @@ void learningByErrorsTextes_mode(weighMaster& personMaster){
     switch(code){
       case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
         personMaster.randomize();
+        break;
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -44,6 +45,7 @@ void learningByErrorsWords_mode(weighMaster& personMaster){
     switch(code){
       case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
         personMaster.randomize();
+        break;
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;
@@ -175,6 +177,7 @@ void learningByErrorsOneWord_mode(weighMaster& personMaster){
     switch(code){
       case EXITCODE_TS::ALL_GOOD_WITHOUT_ERRORS:
         personMaster.randomize();
+        break;
       case EXITCODE_TS::ALL_GOOD:
       case EXITCODE_TS::RERUN_THIS_MODE:
         break;

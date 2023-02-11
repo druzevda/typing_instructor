@@ -104,7 +104,7 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
     mvwprintw(stdscr,LINES-4,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+P - Skip symbol");
     mvwprintw(stdscr,LINES-3,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+U - To menu");
     mvwprintw(stdscr,LINES-2,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+N - Rerun");
-    mvwprintw(stdscr,LINES-1,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+C - exit");
+    mvwprintw(stdscr,LINES-1,X_POINT_SUBWINDOW+X_POINT_SUBWINDOW,"CTRL+X - randomize");
   }();
   const auto printText = [&subwindow,&text,&goodSym,&allSum,symbolsInText](){
     wclear(subwindow);
@@ -157,6 +157,16 @@ void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& p
       wclear(stdscr);
 
       exitcode=EXITCODE_TS::TO_MENU;
+      return;
+    }
+    else if(curKey == KEYS_TS::CTRL_X){
+      fprintf(logfile,"CTRL_X, randomize and go to the new text\n");
+      fflush(logfile);
+      delwin(statwindow);
+      delwin(subwindow);
+      wclear(stdscr);
+      personMaster.randomize();
+      exitcode=EXITCODE_TS::RERUN_THIS_MODE;
       return;
     }
     if(allSum > 0 && (curKey==KEYS_TS::BACKSPACE_NORMAL || curKey==KEYS_TS::BACKSPACE_ARROWS)){ // delit
