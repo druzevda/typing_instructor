@@ -48,11 +48,14 @@ std::vector<double> weighMaster::getNormalizedWeights()const{
 
 void weighMaster::randomize(){
   std::mt19937 mersenne(std::random_device{}());
-  std::uniform_int_distribution<> unif(0,symbolsAmount*symbolsAmount);
+  std::uniform_int_distribution<> unif(0,lettersAmount);
+
   this->clear();
+
   for(int i = 0; i < errorsInInitMaster; ++i){
-    const auto pos = unif(mersenne);
-    ++weights[pos];
+    const auto prevpos = unif(mersenne);
+    const auto nowpos = unif(mersenne);
+    this->makeSample(prevpos,nowpos);
   }
 }
 void weighMaster::normalize(){
@@ -67,6 +70,6 @@ void weighMaster::normalize(){
   );
 }
 void weighMaster::clear(){
-  memset(weights.data(),0,weights.size());
+  std::for_each(weights.begin(),weights.end(),[](auto& elem){elem = 0.0;});
   samplesAmount = 0;
 }
