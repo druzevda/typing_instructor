@@ -79,15 +79,15 @@ std::string constructBetterWords(const std::vector<double>& userWeighs, const st
   }
   std::string result{};
   for(const auto& [weigh,wordNum] : wordsMap){
-    if(result.size() < maxTextFromWordsSize){
+    if(result.size() <= maxTextFromWordsSize){
       const std::string& goodWord=words[wordNum];
       result += goodWord;
       std::fprintf(logfile,"word->%s weigh->%lf\n",goodWord.c_str(),weigh);
-      if(result.size() < maxTextFromWordsSize)
-        result += " ";
-    }else{
-      break;
-    }
+      if(result.size()>= maxTextFromWordsSize){
+        break;
+      }else{
+        result+= " ";
+      }
   }
   std::fprintf(logfile,"\n");
   fflush(logfile);
