@@ -4,6 +4,8 @@
 - 0.4 version(only avalable in develop branch)
     - more keys
     - min max wordsize
+    - main weighMaster, for all modes
+    - more logs
     - exit logic
     - key info
     - arrows
@@ -32,4 +34,3 @@
 * make better menu
 * make errors out to screen
 * add more modes
-* more averaged weights
