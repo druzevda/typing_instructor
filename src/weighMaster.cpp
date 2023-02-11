@@ -52,7 +52,7 @@ void weighMaster::randomize(){
 
   this->clear();
 
-  for(int i = 0; i < errorsInInitMaster; ++i){
+  for(uint32_t i = 0; i < errorsInInitMaster; ++i){
     const auto prevpos = unif(mersenne);
     const auto nowpos = unif(mersenne);
     this->makeSample(prevpos,nowpos);
