@@ -1,7 +1,16 @@
 ## Before running the application, [install the ncurses library](https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/), depending on your Linux distribution
 
 # Versions list:
-- 0.3 version
+- 0.4 version(10.02.23 release)
+    - more keys
+    - min max wordsize
+    - main weighMaster, for all modes
+    - ctrl+x for randomize
+    - more logs
+    - exit logic
+    - key info
+    - arrows
+- 0.3 version (26.01.2023 release)
     - minimal size for word
     - tolower logic
     - time from first symbol
@@ -11,14 +20,14 @@
     - more object files
     - 3 new modes
     - debug versions
-- 0.2 version
+- 0.2 version (06.01.2023 release)
     - 2 new mode
     - desctiption for menu choices
     - box for text window
     - stat window, realtime and last finished
     - fix so short words
     - logfile
-- 0.1 version
+- 0.1 version (04.01.2023 release)
     - only two modes
     - simple(stupid) menu
 
@@ -26,6 +35,3 @@
 * make better menu
 * make errors out to screen
 * add more modes
-* realize exit logic
-* more averaged weights
-* ^x ^p ^n keys binding

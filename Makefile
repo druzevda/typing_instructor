@@ -15,6 +15,7 @@ OBJ_FILES=\
           $(OBJ)/modes.o\
           $(OBJ)/constructFunctions.o\
           $(OBJ)/typingSample.o\
+          $(OBJ)/config.o\
           $(OBJ)/weighMaster.o
 
 DEBUG=
@@ -63,42 +64,42 @@ OBJ_COMPILE: $(OBJ)\
 ##########################################################################################3
 
 $(OBJ)/modes.o: \
-					$(INCLUDE)/config.hxx\
           $(SRC)/modes.cpp\
           $(INCLUDE)/modes.hxx
 	$(PRINT_BUILD)
 	@$(CC) -c $(SRC)/modes.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/constructFunctions.o:\
-					$(INCLUDE)/config.hxx\
           $(SRC)/constructFunctions.cpp\
           $(INCLUDE)/constructFunctions.hxx
 	$(PRINT_BUILD)
 	@$(CC) -c $(SRC)/constructFunctions.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/typingSample.o:\
-					$(INCLUDE)/config.hxx\
           $(SRC)/typingSample.cpp\
           $(INCLUDE)/typingSample.hxx
 	$(PRINT_BUILD)
 	@$(CC) -c $(SRC)/typingSample.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/menu.o:\
-					$(INCLUDE)/config.hxx\
           $(SRC)/menu.cpp\
           $(INCLUDE)/menu.hxx
 	$(PRINT_BUILD)
 	@$(CC) -c $(SRC)/menu.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
+$(OBJ)/config.o:\
+          $(SRC)/config.cpp\
+          $(INCLUDE)/config.hxx
+	$(PRINT_BUILD)
+	@$(CC) -c $(SRC)/config.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
+
 $(OBJ)/weighMaster.o:\
-					$(INCLUDE)/config.hxx\
           $(SRC)/weighMaster.cpp\
           $(INCLUDE)/weighMaster.hxx
 	$(PRINT_BUILD)
 	@$(CC) -c $(SRC)/weighMaster.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
 
 $(OBJ)/main.o:\
-					$(INCLUDE)/config.hxx\
           $(SRC)/main.cpp
 	$(PRINT_BUILD)
 	@$(CC) -c $(SRC)/main.cpp -o $@ -I$(INCLUDE) $(CFLAGS)
@@ -119,5 +120,8 @@ clear:
 	@rm -f $(EXE)
 	@rm -f logfile
 	@rm -rf texts
+
+install:
+	@sudo apt install -y libncurses5-dev libncursesw5-dev g++ make git
 
 ##########################################################################################3

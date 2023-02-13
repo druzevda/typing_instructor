@@ -3,7 +3,8 @@
 
 #include "weighMaster.hxx"
 #include <string>
+#include "enumCodes.hxx"
 
-weighMaster typingSample(const std::string& text);
+void typingSample(const std::string& text, EXITCODE_TS& exitcode, weighMaster& personMaster);
 
 #endif // TYPING_SAMPLE_HXX_INCLUDED___
