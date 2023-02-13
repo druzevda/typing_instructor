@@ -1,10 +1,11 @@
 ## Before running the application, [install the ncurses library](https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/), depending on your Linux distribution
 
 # Versions list:
-- 0.4 version(only avalable in develop branch)
+- 0.4 version(10.02.23 release)
     - more keys
     - min max wordsize
     - main weighMaster, for all modes
+    - ctrl+x for randomize
     - more logs
     - exit logic
     - key info
